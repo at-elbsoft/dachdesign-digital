@@ -12,7 +12,7 @@ function HeroSection() {
   return (
     <section className="relative min-h-[85vh] flex items-center bg-primary text-primary-foreground overflow-hidden">
       <div className="absolute inset-0">
-        <img src={heroImg} alt="" className="w-full h-full object-cover opacity-25" />
+        <img src={heroImg} alt="Dacharbeiten in Hamburg" width={1920} height={1080} className="w-full h-full object-cover opacity-25" />
         <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary/60" />
       </div>
       <div className="relative container-wide py-20 md:py-32">
@@ -116,6 +116,7 @@ function WhyUsSection() {
             <img
               src={workerImg}
               alt="Dachdecker bei der Arbeit an einem Flachdach in Hamburg"
+              width={800} height={600} loading="lazy"
               className="rounded-xl shadow-2xl shadow-foreground/10 w-full object-cover aspect-[4/3]"
             />
             <div className="absolute -bottom-6 -left-6 bg-accent text-accent-foreground px-6 py-4 rounded-xl shadow-lg hidden md:block">

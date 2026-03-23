@@ -71,8 +71,8 @@ export default function Steildach() {
               </div>
             </div>
             <div className="space-y-6">
-              <img src={rooferSmilingImg} alt="Dachdecker bei Ziegelarbeiten am Steildach" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
-              <img src={roofTilesImg} alt="Nahaufnahme eines Ziegeldachs" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
+              <img src={rooferSmilingImg} alt="Dachdecker bei Ziegelarbeiten am Steildach" width={800} height={600} loading="lazy" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
+              <img src={roofTilesImg} alt="Nahaufnahme eines Ziegeldachs" width={800} height={600} loading="lazy" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
             </div>
           </div>
 

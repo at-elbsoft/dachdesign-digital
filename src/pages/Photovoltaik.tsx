@@ -54,7 +54,7 @@ export default function Photovoltaik() {
                 Und das Beste: Sie nutzen überwiegend Ihren eigenen, umweltfreundlichen Strom! Kontaktieren Sie uns – mit Lehmann Dächer wird Photovoltaik einfach und unkompliziert.
               </p>
             </div>
-            <img src={solarHeroImg} alt="Solaranlage auf einem Hausdach mit Sonnenstrahlen" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
+            <img src={solarHeroImg} alt="Solaranlage auf einem Hausdach mit Sonnenstrahlen" width={800} height={600} loading="lazy" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
           </div>
 
           <div className="grid sm:grid-cols-3 gap-6 mb-16">
@@ -75,8 +75,8 @@ export default function Photovoltaik() {
 
           {/* Image Gallery */}
           <div ref={galleryRef} className={`grid sm:grid-cols-2 gap-6 mb-12 ${galleryVisible ? 'animate-fade-up' : 'opacity-0'}`}>
-            <img src={solarTilesImg} alt="Photovoltaikanlage auf Ziegeldach" className="rounded-xl shadow-md w-full object-cover aspect-[4/3]" />
-            <img src={solarModernImg} alt="Modernes Haus mit Solaranlage" className="rounded-xl shadow-md w-full object-cover aspect-[4/3]" />
+            <img src={solarTilesImg} alt="Photovoltaikanlage auf Ziegeldach" width={800} height={600} loading="lazy" className="rounded-xl shadow-md w-full object-cover aspect-[4/3]" />
+            <img src={solarModernImg} alt="Modernes Haus mit Solaranlage" width={800} height={600} loading="lazy" className="rounded-xl shadow-md w-full object-cover aspect-[4/3]" />
           </div>
 
           <div className="text-center">

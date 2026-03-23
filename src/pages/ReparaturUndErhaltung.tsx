@@ -57,8 +57,8 @@ export default function ReparaturUndErhaltung() {
               </a>
             </div>
             <div className="space-y-6">
-              <img src={dachdeckerImg} alt="Dachdecker bei Reparaturarbeiten in Hamburg" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
-              <img src={scaffoldImg} alt="Gerüstbau für Dacharbeiten" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
+              <img src={dachdeckerImg} alt="Dachdecker bei Reparaturarbeiten in Hamburg" width={800} height={600} loading="lazy" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
+              <img src={scaffoldImg} alt="Gerüstbau für Dacharbeiten" width={800} height={600} loading="lazy" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
             </div>
           </div>
         </div>

@@ -17,7 +17,7 @@ export default function PageHero({ title, subtitle, breadcrumb, image }: PageHer
     >
       {image && (
         <div className="absolute inset-0">
-          <img src={image} alt="" className="w-full h-full object-cover opacity-20" />
+          <img src={image} alt="" width={1920} height={600} className="w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-primary/80" />
         </div>
       )}
