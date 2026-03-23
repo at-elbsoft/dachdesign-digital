@@ -5,6 +5,8 @@ import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import housesImg from "@/assets/houses.png";
+import rooferSmilingImg from "@/assets/roofer-smiling.png";
+import roofTilesImg from "@/assets/roof-tiles-close.png";
 
 function DetailBlock({ title, text, benefits }: { title: string; text: string; benefits: string[] }) {
   const { ref, isVisible } = useScrollReveal();
