@@ -1,17 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
+import SEOHead from "@/components/SEOHead";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 export default function Kontakt() {
   const { ref, isVisible } = useScrollReveal();
-
-  useEffect(() => {
-    document.title = "Kontakt | Dachdecker Hamburg – Lehmann Dächer & Bauklempnerei";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", "Kontaktieren Sie Lehmann Dächer & Bauklempnerei GmbH in Hamburg. Tel: 0176 1351 4385, E-Mail: kontakt@ldbauklempnerei.de. Mo-Fr 06-18 Uhr, 24h Notdienst.");
-  }, []);
 
   const [formData, setFormData] = useState({ name: '', phone: '', email: '', subject: '', message: '' });
 

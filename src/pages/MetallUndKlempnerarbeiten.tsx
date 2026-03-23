@@ -1,8 +1,8 @@
-import { useEffect } from "react";
 import { CheckCircle2, Phone } from "lucide-react";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
+import SEOHead from "@/components/SEOHead";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import klempnerImg from "@/assets/klempner-work.png";
 import rooferImg from "@/assets/roofer-tiles.png";
@@ -10,14 +10,14 @@ import rooferImg from "@/assets/roofer-tiles.png";
 export default function MetallUndKlempnerarbeiten() {
   const { ref, isVisible } = useScrollReveal();
 
-  useEffect(() => {
-    document.title = "Metall- & Klempnerarbeiten Hamburg | Lehmann Dächer & Bauklempnerei";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", "Professionelle Metall- und Klempnerarbeiten in Hamburg: Kupfer, Titanzink, Aluminium, Stehfalz. Schutz und Eleganz für Ihr Dach vom Meisterbetrieb.");
-  }, []);
-
   return (
     <Layout>
+      <SEOHead
+        title="Metall- & Klempnerarbeiten Hamburg | Lehmann Dächer & Bauklempnerei"
+        description="Professionelle Metall- und Klempnerarbeiten in Hamburg: Kupfer, Titanzink, Aluminium, Stehfalz. Schutz und Eleganz für Ihr Dach vom Meisterbetrieb."
+        path="/metall-und-klempnerarbeiten"
+        schema={{ "@context": "https://schema.org", "@type": "Service", "serviceType": "Metall- und Klempnerarbeiten", "provider": { "@type": "RoofingContractor", "name": "Lehmann Dächer & Bauklempnerei GmbH" }, "areaServed": { "@type": "City", "name": "Hamburg" } }}
+      />
       <PageHero
         title="Metall- & Klempnerarbeiten"
         subtitle="Hochwertige Blecharbeiten – Schutz und Eleganz für Ihr Dach mit Kupfer, Titanzink, Aluminium und mehr."
