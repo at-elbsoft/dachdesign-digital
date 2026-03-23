@@ -54,6 +54,7 @@ export default function Leistungen() {
         description="Unsere Dachdeckerleistungen: Flachdach, Steildach, Photovoltaik, Reparatur, Metall- & Klempnerarbeiten. Meisterbetrieb in Hamburg mit über 25 Jahren Erfahrung."
         path="/leistungen"
       />
+      <PageHero
         title="Unsere Leistungen"
         subtitle="Ob Flach- oder Steildach – wir übernehmen Neubau, Reparatur und Instandhaltung. Dazu zählen Metall- und Klempnerarbeiten sowie Photovoltaik."
         breadcrumb="Leistungen"
