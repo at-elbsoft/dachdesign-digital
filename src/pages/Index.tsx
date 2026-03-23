@@ -12,7 +12,7 @@ function HeroSection() {
   return (
     <section className="relative min-h-[85vh] flex items-center bg-primary text-primary-foreground overflow-hidden">
       <div className="absolute inset-0">
-        <img src={heroImg} alt="" className="w-full h-full object-cover opacity-25" />
+        <img src={heroImg} alt="Dacharbeiten in Hamburg" width={1920} height={1080} className="w-full h-full object-cover opacity-25" />
         <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary/60" />
       </div>
       <div className="relative container-wide py-20 md:py-32">
