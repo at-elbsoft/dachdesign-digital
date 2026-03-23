@@ -26,7 +26,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center gap-3 mb-5">
-              <img src={logo} alt="LD Bauklempnerei Logo" className="h-12 w-auto brightness-0 invert" />
+              <img src={logo} alt="LD Bauklempnerei Logo" className="h-12 w-auto" />
               <div>
                 <span className="font-heading font-bold text-sm block">Lehmann Dächer</span>
                 <span className="text-xs opacity-70 block">& Bauklempnerei GmbH</span>
