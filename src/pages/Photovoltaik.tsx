@@ -27,6 +27,12 @@ export default function Photovoltaik() {
 
   return (
     <Layout>
+      <SEOHead
+        title="Photovoltaik Hamburg | Solaranlage vom Dachdecker – Lehmann Dächer"
+        description="Photovoltaik-Installation in Hamburg vom Meisterbetrieb. Solaranlage auf Ihrem Dach – Energiekosten senken und Umwelt schützen. Jetzt beraten lassen!"
+        path="/photovoltaik"
+        schema={pvSchema}
+      />
       <PageHero
         title="Photovoltaik"
         subtitle="Ihr Dach als persönlicher Energieproduzent – mit Solaranlagen von Lehmann Dächer."

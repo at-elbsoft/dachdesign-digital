@@ -1,21 +1,23 @@
-import { useEffect } from "react";
 import { CheckCircle2, Phone } from "lucide-react";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
+import SEOHead from "@/components/SEOHead";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import dachdeckerImg from "@/assets/dachdecker-hamburg.jpeg";
 import scaffoldImg from "@/assets/scaffold.png";
 
 export default function ReparaturUndErhaltung() {
   const { ref, isVisible } = useScrollReveal();
-  const { ref: imgRef, isVisible: imgVisible } = useScrollReveal();
 
-  useEffect(() => {
-    document.title = "Dachreparatur Hamburg | Wartung & Erhaltung – Lehmann Dächer";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", "Dachreparatur und Wartung in Hamburg: Dach-Check, Sturmschäden, Wartungsverträge. Schnell, fachgerecht und zuverlässig. 24h Notdienst verfügbar!");
-  }, []);
+  return (
+    <Layout>
+      <SEOHead
+        title="Dachreparatur Hamburg | Wartung & Erhaltung – Lehmann Dächer"
+        description="Dachreparatur und Wartung in Hamburg: Dach-Check, Sturmschäden, Wartungsverträge. Schnell, fachgerecht und zuverlässig. 24h Notdienst verfügbar!"
+        path="/reparatur-und-erhaltung"
+        schema={{ "@context": "https://schema.org", "@type": "Service", "serviceType": "Dachreparatur & Wartung", "provider": { "@type": "RoofingContractor", "name": "Lehmann Dächer & Bauklempnerei GmbH" }, "areaServed": { "@type": "City", "name": "Hamburg" } }}
+      />
 
   return (
     <Layout>
