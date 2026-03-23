@@ -1,8 +1,8 @@
-import { useEffect } from "react";
 import { CheckCircle2, Phone } from "lucide-react";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
+import SEOHead from "@/components/SEOHead";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import housesImg from "@/assets/houses.png";
 import rooferSmilingImg from "@/assets/roofer-smiling.png";
@@ -26,17 +26,24 @@ function DetailBlock({ title, text, benefits }: { title: string; text: string; b
   );
 }
 
+const steildachSchema = {
+  "@context": "https://schema.org", "@type": "Service",
+  "serviceType": "Steildach", "provider": { "@type": "RoofingContractor", "name": "Lehmann Dächer & Bauklempnerei GmbH" },
+  "areaServed": { "@type": "City", "name": "Hamburg" },
+  "description": "Steildach-Spezialist in Hamburg: Dacheindeckung, Fassadendämmung, Dachausbau und Sanierung."
+};
+
 export default function Steildach() {
   const { ref, isVisible } = useScrollReveal();
 
-  useEffect(() => {
-    document.title = "Steildach Hamburg | Dacheindeckung & Sanierung – Lehmann Dächer";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", "Steildach-Spezialist in Hamburg: Dacheindeckung, Fassadendämmung, Dachausbau und Sanierung. Individuelle Lösungen vom Meisterbetrieb. Jetzt anfragen!");
-  }, []);
-
   return (
     <Layout>
+      <SEOHead
+        title="Steildach Hamburg | Dacheindeckung & Sanierung – Lehmann Dächer"
+        description="Steildach-Spezialist in Hamburg: Dacheindeckung, Fassadendämmung, Dachausbau und Sanierung. Individuelle Lösungen vom Meisterbetrieb. Jetzt anfragen!"
+        path="/steildach"
+        schema={steildachSchema}
+      />
       <PageHero
         title="Steildach"
         subtitle="Individuell gestaltete Steildächer – optimaler Schutz und starke Ästhetik für Ihr Zuhause."

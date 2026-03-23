@@ -1,8 +1,8 @@
-import { useEffect } from "react";
 import { Briefcase, MapPin } from "lucide-react";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
+import SEOHead from "@/components/SEOHead";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const jobs = [
@@ -21,14 +21,13 @@ const jobs = [
 export default function Jobs() {
   const { ref, isVisible } = useScrollReveal();
 
-  useEffect(() => {
-    document.title = "Jobs | Karriere bei Lehmann Dächer & Bauklempnerei Hamburg";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", "Karriere bei Lehmann Dächer & Bauklempnerei GmbH. Offene Stellen für Dachdecker und Bürokräfte in Seevetal/Hamburg. Jetzt bewerben!");
-  }, []);
-
   return (
     <Layout>
+      <SEOHead
+        title="Jobs | Karriere bei Lehmann Dächer & Bauklempnerei Hamburg"
+        description="Karriere bei Lehmann Dächer & Bauklempnerei GmbH. Offene Stellen für Dachdecker und Bürokräfte in Seevetal/Hamburg. Jetzt bewerben!"
+        path="/jobs"
+      />
       <PageHero
         title="Karriere"
         subtitle="Werden Sie Teil unseres Teams. Wir suchen engagierte Mitarbeiter für unser wachsendes Unternehmen."

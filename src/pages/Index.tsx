@@ -1,8 +1,8 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Phone, Shield, Clock, Users, Award, ChevronRight, CheckCircle2 } from "lucide-react";
 import Layout from "@/components/Layout";
 import CTASection from "@/components/CTASection";
+import SEOHead from "@/components/SEOHead";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import heroImg from "@/assets/hero-roofing.png";
 import housesImg from "@/assets/houses.png";
@@ -271,15 +271,26 @@ function RegionsSection() {
   );
 }
 
-export default function Index() {
-  useEffect(() => {
-    document.title = "Dachdecker Hamburg | Lehmann Dächer & Bauklempnerei GmbH";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", "Ihr Meisterbetrieb für Dachdeckerarbeiten in Hamburg. Über 25 Jahre Erfahrung in Flachdach, Steildach, Photovoltaik und Bauklempnerei. 24h Notdienst ✓");
-  }, []);
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Wie lange dauert eine Dachsanierung?", "acceptedAnswer": { "@type": "Answer", "text": "Die Dauer hängt vom Umfang der Arbeiten ab. Wir besprechen den Zeitplan individuell nach einer Bestandsaufnahme." } },
+    { "@type": "Question", "name": "Welche Dacharten decken Sie ab?", "acceptedAnswer": { "@type": "Answer", "text": "Wir sind auf Steildächer, Flachdächer und Gründächer spezialisiert und bieten Lösungen für jede Dachform." } },
+    { "@type": "Question", "name": "Bieten Sie Wartungsverträge an?", "acceptedAnswer": { "@type": "Answer", "text": "Ja, wir bieten regelmäßige Dachinspektionen und Wartungsverträge für die langfristige Werterhaltung." } },
+    { "@type": "Question", "name": "Sind Sie in Notfällen erreichbar?", "acceptedAnswer": { "@type": "Answer", "text": "Ja, unser 24/7-Notdienst steht Ihnen für dringende Dachreparaturen jederzeit zur Verfügung." } },
+  ]
+};
 
+export default function Index() {
   return (
     <Layout>
+      <SEOHead
+        title="Dachdecker Hamburg | Lehmann Dächer & Bauklempnerei GmbH"
+        description="Ihr Meisterbetrieb für Dachdeckerarbeiten in Hamburg. Über 25 Jahre Erfahrung in Flachdach, Steildach, Photovoltaik und Bauklempnerei. 24h Notdienst ✓"
+        path="/"
+        schema={faqSchema}
+      />
       <HeroSection />
       <StatsSection />
       <WhyUsSection />

@@ -1,22 +1,23 @@
-import { useEffect } from "react";
 import { CheckCircle2, Phone, Sun, Zap, Leaf } from "lucide-react";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
+import SEOHead from "@/components/SEOHead";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import solarHeroImg from "@/assets/solar-hero.png";
 import solarTilesImg from "@/assets/solar-tiles.png";
 import solarModernImg from "@/assets/solar-modern.png";
 
+const pvSchema = {
+  "@context": "https://schema.org", "@type": "Service",
+  "serviceType": "Photovoltaik", "provider": { "@type": "RoofingContractor", "name": "Lehmann Dächer & Bauklempnerei GmbH" },
+  "areaServed": { "@type": "City", "name": "Hamburg" },
+  "description": "Photovoltaik-Installation in Hamburg vom Meisterbetrieb."
+};
+
 export default function Photovoltaik() {
   const { ref, isVisible } = useScrollReveal();
   const { ref: galleryRef, isVisible: galleryVisible } = useScrollReveal();
-
-  useEffect(() => {
-    document.title = "Photovoltaik Hamburg | Solaranlage vom Dachdecker – Lehmann Dächer";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", "Photovoltaik-Installation in Hamburg vom Meisterbetrieb. Solaranlage auf Ihrem Dach – Energiekosten senken und Umwelt schützen. Jetzt beraten lassen!");
-  }, []);
 
   const benefits = [
     { icon: Zap, title: "Kosten senken", desc: "Produzieren Sie Strom zu Preisen weit unter den Netzkosten." },
@@ -26,6 +27,12 @@ export default function Photovoltaik() {
 
   return (
     <Layout>
+      <SEOHead
+        title="Photovoltaik Hamburg | Solaranlage vom Dachdecker – Lehmann Dächer"
+        description="Photovoltaik-Installation in Hamburg vom Meisterbetrieb. Solaranlage auf Ihrem Dach – Energiekosten senken und Umwelt schützen. Jetzt beraten lassen!"
+        path="/photovoltaik"
+        schema={pvSchema}
+      />
       <PageHero
         title="Photovoltaik"
         subtitle="Ihr Dach als persönlicher Energieproduzent – mit Solaranlagen von Lehmann Dächer."

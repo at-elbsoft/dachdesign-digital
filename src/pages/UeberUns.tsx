@@ -1,7 +1,7 @@
-import { useEffect } from "react";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
+import SEOHead from "@/components/SEOHead";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { Shield, Clock, Users, Award, ThumbsUp, Wrench, Eye, MessageCircle } from "lucide-react";
 import houseImg from "@/assets/house-garden.jpg";
@@ -114,14 +114,13 @@ function StatsSection() {
 }
 
 export default function UeberUns() {
-  useEffect(() => {
-    document.title = "Über uns | Lehmann Dächer & Bauklempnerei GmbH Hamburg";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", "Lernen Sie Lehmann Dächer & Bauklempnerei GmbH kennen – Ihr Meisterbetrieb mit über 25 Jahren Erfahrung in Hamburg. Qualität, Zuverlässigkeit und persönliche Beratung.");
-  }, []);
-
   return (
     <Layout>
+      <SEOHead
+        title="Über uns | Lehmann Dächer & Bauklempnerei GmbH Hamburg"
+        description="Lernen Sie Lehmann Dächer & Bauklempnerei GmbH kennen – Ihr Meisterbetrieb mit über 25 Jahren Erfahrung in Hamburg. Qualität, Zuverlässigkeit und persönliche Beratung."
+        path="/ueber-uns"
+      />
       <PageHero
         title="Über Lehmann Dächer & Bauklempnerei"
         subtitle="Seit über 25 Jahren Ihr verlässlicher Partner für Dacharbeiten in Hamburg und Umgebung."

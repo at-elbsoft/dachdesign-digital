@@ -1,14 +1,11 @@
-import { useEffect } from "react";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
+import SEOHead from "@/components/SEOHead";
 
 export default function Datenschutz() {
-  useEffect(() => {
-    document.title = "Datenschutzerklärung | Lehmann Dächer & Bauklempnerei GmbH";
-  }, []);
-
   return (
     <Layout>
+      <SEOHead title="Datenschutzerklärung | Lehmann Dächer & Bauklempnerei GmbH" description="Datenschutzerklärung der Lehmann Dächer & Bauklempnerei GmbH. Informationen zum Umgang mit Ihren personenbezogenen Daten." path="/datenschutz" />
       <PageHero title="Datenschutzerklärung" breadcrumb="Datenschutz" />
       <section className="section-padding">
         <div className="container-tight prose prose-sm max-w-3xl">
