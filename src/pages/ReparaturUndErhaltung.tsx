@@ -19,8 +19,7 @@ export default function ReparaturUndErhaltung() {
         schema={{ "@context": "https://schema.org", "@type": "Service", "serviceType": "Dachreparatur & Wartung", "provider": { "@type": "RoofingContractor", "name": "Lehmann Dächer & Bauklempnerei GmbH" }, "areaServed": { "@type": "City", "name": "Hamburg" } }}
       />
 
-  return (
-    <Layout>
+
       <PageHero
         title="Reparatur & Erhaltung"
         subtitle="Dach-Check, schnelle Reparaturen und Wartungsverträge – bei uns erhalten Sie alles aus einer Hand."
