@@ -3,10 +3,29 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import Index from "./pages/Index.tsx";
-import NotFound from "./pages/NotFound.tsx";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import Index from "./pages/Index";
+import UeberUns from "./pages/UeberUns";
+import Leistungen from "./pages/Leistungen";
+import Flachdach from "./pages/Flachdach";
+import Steildach from "./pages/Steildach";
+import Photovoltaik from "./pages/Photovoltaik";
+import ReparaturUndErhaltung from "./pages/ReparaturUndErhaltung";
+import MetallUndKlempnerarbeiten from "./pages/MetallUndKlempnerarbeiten";
+import Kontakt from "./pages/Kontakt";
+import Jobs from "./pages/Jobs";
+import Impressum from "./pages/Impressum";
+import Datenschutz from "./pages/Datenschutz";
+import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  return null;
+}
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -14,9 +33,20 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/ueber-uns" element={<UeberUns />} />
+          <Route path="/leistungen" element={<Leistungen />} />
+          <Route path="/flachdach" element={<Flachdach />} />
+          <Route path="/steildach" element={<Steildach />} />
+          <Route path="/photovoltaik" element={<Photovoltaik />} />
+          <Route path="/reparatur-und-erhaltung" element={<ReparaturUndErhaltung />} />
+          <Route path="/metall-und-klempnerarbeiten" element={<MetallUndKlempnerarbeiten />} />
+          <Route path="/kontakt" element={<Kontakt />} />
+          <Route path="/jobs" element={<Jobs />} />
+          <Route path="/impressum" element={<Impressum />} />
+          <Route path="/datenschutz" element={<Datenschutz />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
