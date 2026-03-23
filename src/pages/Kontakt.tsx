@@ -17,6 +17,11 @@ export default function Kontakt() {
 
   return (
     <Layout>
+      <SEOHead
+        title="Kontakt | Dachdecker Hamburg – Lehmann Dächer & Bauklempnerei"
+        description="Kontaktieren Sie Lehmann Dächer & Bauklempnerei GmbH in Hamburg. Tel: 0176 1351 4385, E-Mail: kontakt@ldbauklempnerei.de. Mo-Fr 06-18 Uhr, 24h Notdienst."
+        path="/kontakt"
+      />
       <PageHero
         title="Kontakt"
         subtitle="Wir freuen uns auf Ihre Nachricht. Kontaktieren Sie uns für eine unverbindliche Beratung."
