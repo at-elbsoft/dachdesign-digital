@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -28,30 +29,32 @@ function ScrollToTop() {
 }
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/ueber-uns" element={<UeberUns />} />
-          <Route path="/leistungen" element={<Leistungen />} />
-          <Route path="/flachdach" element={<Flachdach />} />
-          <Route path="/steildach" element={<Steildach />} />
-          <Route path="/photovoltaik" element={<Photovoltaik />} />
-          <Route path="/reparatur-und-erhaltung" element={<ReparaturUndErhaltung />} />
-          <Route path="/metall-und-klempnerarbeiten" element={<MetallUndKlempnerarbeiten />} />
-          <Route path="/kontakt" element={<Kontakt />} />
-          <Route path="/jobs" element={<Jobs />} />
-          <Route path="/impressum" element={<Impressum />} />
-          <Route path="/datenschutz" element={<Datenschutz />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/ueber-uns" element={<UeberUns />} />
+            <Route path="/leistungen" element={<Leistungen />} />
+            <Route path="/flachdach" element={<Flachdach />} />
+            <Route path="/steildach" element={<Steildach />} />
+            <Route path="/photovoltaik" element={<Photovoltaik />} />
+            <Route path="/reparatur-und-erhaltung" element={<ReparaturUndErhaltung />} />
+            <Route path="/metall-und-klempnerarbeiten" element={<MetallUndKlempnerarbeiten />} />
+            <Route path="/kontakt" element={<Kontakt />} />
+            <Route path="/jobs" element={<Jobs />} />
+            <Route path="/impressum" element={<Impressum />} />
+            <Route path="/datenschutz" element={<Datenschutz />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </HelmetProvider>
 );
 
 export default App;
