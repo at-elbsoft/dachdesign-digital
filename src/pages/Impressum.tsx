@@ -1,14 +1,11 @@
-import { useEffect } from "react";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
+import SEOHead from "@/components/SEOHead";
 
 export default function Impressum() {
-  useEffect(() => {
-    document.title = "Impressum | Lehmann Dächer & Bauklempnerei GmbH";
-  }, []);
-
   return (
     <Layout>
+      <SEOHead title="Impressum | Lehmann Dächer & Bauklempnerei GmbH" description="Impressum der Lehmann Dächer & Bauklempnerei GmbH, Grützmühle 23, 21218 Seevetal." path="/impressum" />
       <PageHero title="Impressum" breadcrumb="Impressum" />
       <section className="section-padding">
         <div className="container-tight prose prose-sm max-w-3xl">

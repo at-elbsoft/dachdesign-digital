@@ -23,6 +23,11 @@ export default function Jobs() {
 
   return (
     <Layout>
+      <SEOHead
+        title="Jobs | Karriere bei Lehmann Dächer & Bauklempnerei Hamburg"
+        description="Karriere bei Lehmann Dächer & Bauklempnerei GmbH. Offene Stellen für Dachdecker und Bürokräfte in Seevetal/Hamburg. Jetzt bewerben!"
+        path="/jobs"
+      />
       <PageHero
         title="Karriere"
         subtitle="Werden Sie Teil unseres Teams. Wir suchen engagierte Mitarbeiter für unser wachsendes Unternehmen."
