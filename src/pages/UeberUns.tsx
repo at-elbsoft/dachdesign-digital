@@ -1,7 +1,7 @@
-import { useEffect } from "react";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
+import SEOHead from "@/components/SEOHead";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { Shield, Clock, Users, Award, ThumbsUp, Wrench, Eye, MessageCircle } from "lucide-react";
 import houseImg from "@/assets/house-garden.jpg";
