@@ -45,6 +45,12 @@ export default function Flachdach() {
 
   return (
     <Layout>
+      <SEOHead
+        title="Flachdach Hamburg | Abdichtung & Sanierung – Lehmann Dächer"
+        description="Flachdach-Experten in Hamburg: Abdichtung, Dämmung, Begrünung und Sanierung. Langlebig, energieeffizient und pflegeleicht. Jetzt beraten lassen!"
+        path="/flachdach"
+        schema={flachdachSchema}
+      />
       <PageHero
         title="Flachdach"
         subtitle="Langlebige, energieeffiziente und pflegeleichte Flachdachlösungen für Gewerbe und Wohnbau."
