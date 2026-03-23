@@ -1,8 +1,8 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Phone, Shield, Clock, Users, Award, ChevronRight, CheckCircle2 } from "lucide-react";
 import Layout from "@/components/Layout";
 import CTASection from "@/components/CTASection";
+import SEOHead from "@/components/SEOHead";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import heroImg from "@/assets/hero-roofing.png";
 import housesImg from "@/assets/houses.png";
