@@ -4,9 +4,13 @@ import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import solarHeroImg from "@/assets/solar-hero.png";
+import solarTilesImg from "@/assets/solar-tiles.png";
+import solarModernImg from "@/assets/solar-modern.png";
 
 export default function Photovoltaik() {
   const { ref, isVisible } = useScrollReveal();
+  const { ref: galleryRef, isVisible: galleryVisible } = useScrollReveal();
 
   useEffect(() => {
     document.title = "Photovoltaik Hamburg | Solaranlage vom Dachdecker – Lehmann Dächer";
@@ -26,20 +30,27 @@ export default function Photovoltaik() {
         title="Photovoltaik"
         subtitle="Ihr Dach als persönlicher Energieproduzent – mit Solaranlagen von Lehmann Dächer."
         breadcrumb="Leistungen / Photovoltaik"
+        image={solarHeroImg}
       />
       <section ref={ref} className="section-padding-lg">
         <div className="container-wide">
-          <div className={`max-w-3xl mb-12 ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
-            <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3">Solarenergie vom Profi</p>
-            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4 leading-tight">
-              Dächer – Ihre persönlichen Energieproduzenten
-            </h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Mit einer Solaranlage auf Ihrem Dach reduzieren Sie nicht nur Ihre Energiekosten erheblich, sondern leisten auch einen aktiven Beitrag zum Umweltschutz. Die Ersparnisse beim Eigenverbrauch decken schnell Ihre Anschaffungskosten, und die Vergütung für überschüssig produzierte Energie trägt zur positiven Kosten-Nutzen-Rechnung bei.
-            </p>
+          <div className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-start mb-16 ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3">Solarenergie vom Profi</p>
+              <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4 leading-tight">
+                Dächer – Ihre persönlichen Energieproduzenten
+              </h2>
+              <p className="text-muted-foreground leading-relaxed mb-6">
+                Mit einer Solaranlage auf Ihrem Dach reduzieren Sie nicht nur Ihre Energiekosten erheblich, sondern leisten auch einen aktiven Beitrag zum Umweltschutz. Die Ersparnisse beim Eigenverbrauch decken schnell Ihre Anschaffungskosten, und die Vergütung für überschüssig produzierte Energie trägt zur positiven Kosten-Nutzen-Rechnung bei.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                Und das Beste: Sie nutzen überwiegend Ihren eigenen, umweltfreundlichen Strom! Kontaktieren Sie uns – mit Lehmann Dächer wird Photovoltaik einfach und unkompliziert.
+              </p>
+            </div>
+            <img src={solarHeroImg} alt="Solaranlage auf einem Hausdach mit Sonnenstrahlen" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
           </div>
 
-          <div className="grid sm:grid-cols-3 gap-6 mb-12">
+          <div className="grid sm:grid-cols-3 gap-6 mb-16">
             {benefits.map((b, i) => (
               <div
                 key={b.title}
@@ -53,6 +64,12 @@ export default function Photovoltaik() {
                 <p className="text-sm text-muted-foreground leading-relaxed">{b.desc}</p>
               </div>
             ))}
+          </div>
+
+          {/* Image Gallery */}
+          <div ref={galleryRef} className={`grid sm:grid-cols-2 gap-6 mb-12 ${galleryVisible ? 'animate-fade-up' : 'opacity-0'}`}>
+            <img src={solarTilesImg} alt="Photovoltaikanlage auf Ziegeldach" className="rounded-xl shadow-md w-full object-cover aspect-[4/3]" />
+            <img src={solarModernImg} alt="Modernes Haus mit Solaranlage" className="rounded-xl shadow-md w-full object-cover aspect-[4/3]" />
           </div>
 
           <div className="text-center">
