@@ -4,10 +4,12 @@ import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
-import repairImg from "@/assets/worker-repair.png";
+import dachdeckerImg from "@/assets/dachdecker-hamburg.jpeg";
+import scaffoldImg from "@/assets/scaffold.png";
 
 export default function ReparaturUndErhaltung() {
   const { ref, isVisible } = useScrollReveal();
+  const { ref: imgRef, isVisible: imgVisible } = useScrollReveal();
 
   useEffect(() => {
     document.title = "Dachreparatur Hamburg | Wartung & Erhaltung – Lehmann Dächer";
@@ -21,7 +23,7 @@ export default function ReparaturUndErhaltung() {
         title="Reparatur & Erhaltung"
         subtitle="Dach-Check, schnelle Reparaturen und Wartungsverträge – bei uns erhalten Sie alles aus einer Hand."
         breadcrumb="Leistungen / Reparatur & Erhaltung"
-        image={repairImg}
+        image={dachdeckerImg}
       />
       <section ref={ref} className="section-padding-lg">
         <div className="container-wide">
@@ -53,7 +55,10 @@ export default function ReparaturUndErhaltung() {
                 Jetzt Dach-Check anfordern
               </a>
             </div>
-            <img src={repairImg} alt="Dachreparatur durch Fachhandwerker" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
+            <div className="space-y-6">
+              <img src={dachdeckerImg} alt="Dachdecker bei Reparaturarbeiten in Hamburg" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
+              <img src={scaffoldImg} alt="Gerüstbau für Dacharbeiten" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
+            </div>
           </div>
         </div>
       </section>

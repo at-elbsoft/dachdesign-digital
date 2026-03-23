@@ -5,6 +5,8 @@ import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import housesImg from "@/assets/houses.png";
+import rooferSmilingImg from "@/assets/roofer-smiling.png";
+import roofTilesImg from "@/assets/roof-tiles-close.png";
 
 function DetailBlock({ title, text, benefits }: { title: string; text: string; benefits: string[] }) {
   const { ref, isVisible } = useScrollReveal();
@@ -61,7 +63,10 @@ export default function Steildach() {
                 ))}
               </div>
             </div>
-            <img src={housesImg} alt="Steildächer verschiedener Gebäude" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
+            <div className="space-y-6">
+              <img src={rooferSmilingImg} alt="Dachdecker bei Ziegelarbeiten am Steildach" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
+              <img src={roofTilesImg} alt="Nahaufnahme eines Ziegeldachs" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
+            </div>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

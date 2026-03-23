@@ -5,32 +5,42 @@ import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import flatRoofImg from "@/assets/worker-flat-roof.png";
+import roofTilesImg from "@/assets/roof-tiles-close.png";
+import solarHeroImg from "@/assets/solar-hero.png";
+import dachdeckerImg from "@/assets/dachdecker-hamburg.jpeg";
+import klempnerImg from "@/assets/klempner-work.png";
 
 const services = [
   {
     title: "Flachdach",
     desc: "Ein modernes Flachdach überzeugt durch Langlebigkeit, minimale Wartung und Kosteneffizienz – eine zukunftssichere Wahl für Ihr Gebäude.",
     href: "/flachdach",
+    image: flatRoofImg,
   },
   {
     title: "Steildach",
     desc: "Individuell nach Ihren Wünschen gestaltet und mit verschiedenen Materialien eingedeckt – optimaler Schutz und starkes Design.",
     href: "/steildach",
+    image: roofTilesImg,
   },
   {
     title: "Photovoltaik",
     desc: "Sonnenenergie effizient nutzen. Unsere maßgeschneiderten Lösungen helfen Ihnen, langfristig Energiekosten zu senken.",
     href: "/photovoltaik",
+    image: solarHeroImg,
   },
   {
     title: "Reparatur & Erhaltung",
     desc: "Von der Dachinspektion über fachgerechte Reparaturen bis hin zur regelmäßigen Wartung – alles aus einer Hand.",
     href: "/reparatur-und-erhaltung",
+    image: dachdeckerImg,
   },
   {
     title: "Metall- & Klempnerarbeiten",
     desc: "Hochwertige Metallverkleidungen für Schutz und Eleganz – Kantungen, Stehfalz, Einfassungen und mehr.",
     href: "/metall-und-klempnerarbeiten",
+    image: klempnerImg,
   },
 ];
 
@@ -57,16 +67,25 @@ export default function Leistungen() {
               <Link
                 key={s.href}
                 to={s.href}
-                className={`group bg-card border border-border rounded-xl p-7 hover:shadow-lg hover:shadow-foreground/5 transition-all duration-300 hover:-translate-y-1 active:scale-[0.98] ${
+                className={`group bg-card border border-border rounded-xl overflow-hidden hover:shadow-lg hover:shadow-foreground/5 transition-all duration-300 hover:-translate-y-1 active:scale-[0.98] ${
                   isVisible ? 'animate-fade-up' : 'opacity-0'
                 }`}
                 style={{ animationDelay: `${i * 80}ms` }}
               >
-                <h3 className="font-heading font-semibold text-lg mb-3 group-hover:text-accent transition-colors">{s.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4">{s.desc}</p>
-                <span className="text-sm font-medium text-accent flex items-center gap-1">
-                  Details ansehen <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </span>
+                <div className="aspect-[16/10] overflow-hidden">
+                  <img
+                    src={s.image}
+                    alt={s.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-heading font-semibold text-lg mb-2 group-hover:text-accent transition-colors">{s.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-3">{s.desc}</p>
+                  <span className="text-sm font-medium text-accent flex items-center gap-1">
+                    Details ansehen <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </div>
               </Link>
             ))}
           </div>
