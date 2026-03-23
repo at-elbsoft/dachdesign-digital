@@ -47,15 +47,13 @@ const services = [
 export default function Leistungen() {
   const { ref, isVisible } = useScrollReveal();
 
-  useEffect(() => {
-    document.title = "Leistungen | Dachdecker Hamburg – Lehmann Dächer & Bauklempnerei";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", "Unsere Dachdeckerleistungen: Flachdach, Steildach, Photovoltaik, Reparatur, Metall- & Klempnerarbeiten. Meisterbetrieb in Hamburg mit über 25 Jahren Erfahrung.");
-  }, []);
-
   return (
     <Layout>
-      <PageHero
+      <SEOHead
+        title="Leistungen | Dachdecker Hamburg – Lehmann Dächer & Bauklempnerei"
+        description="Unsere Dachdeckerleistungen: Flachdach, Steildach, Photovoltaik, Reparatur, Metall- & Klempnerarbeiten. Meisterbetrieb in Hamburg mit über 25 Jahren Erfahrung."
+        path="/leistungen"
+      />
         title="Unsere Leistungen"
         subtitle="Ob Flach- oder Steildach – wir übernehmen Neubau, Reparatur und Instandhaltung. Dazu zählen Metall- und Klempnerarbeiten sowie Photovoltaik."
         breadcrumb="Leistungen"
