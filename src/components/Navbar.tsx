@@ -4,7 +4,7 @@ import { Menu, X, Phone } from "lucide-react";
 import logo from "@/assets/logo.webp";
 
 const NAV_ITEMS = [
-  { label: "Startseite", href: "/" },
+  { label: "Willkommen", href: "/" },
   {
     label: "Leistungen",
     href: "/leistungen",
