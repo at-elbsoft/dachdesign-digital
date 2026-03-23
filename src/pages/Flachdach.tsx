@@ -31,13 +31,16 @@ function ServiceDetail({ title, text, benefits, reverse }: ServiceDetailProps) {
   );
 }
 
-export default function Flachdach() {
-  useEffect(() => {
-    document.title = "Flachdach Hamburg | Abdichtung & Sanierung – Lehmann Dächer";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", "Flachdach-Experten in Hamburg: Abdichtung, Dämmung, Begrünung und Sanierung. Langlebig, energieeffizient und pflegeleicht. Jetzt beraten lassen!");
-  }, []);
+const flachdachSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Flachdach",
+  "provider": { "@type": "RoofingContractor", "name": "Lehmann Dächer & Bauklempnerei GmbH" },
+  "areaServed": { "@type": "City", "name": "Hamburg" },
+  "description": "Flachdach-Experten in Hamburg: Abdichtung, Dämmung, Begrünung und Sanierung."
+};
 
+export default function Flachdach() {
   const { ref: introRef, isVisible: introVisible } = useScrollReveal();
 
   return (
