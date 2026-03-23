@@ -7,6 +7,13 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import heroImg from "@/assets/hero-roofing.png";
 import housesImg from "@/assets/houses.png";
 import workerImg from "@/assets/worker-flat-roof.png";
+import dachdeckereiImg from "@/assets/dachdeckerei.jpeg";
+import dachrinnenImg from "@/assets/dachrinnenreinigung.jpeg";
+import wuerthLogo from "@/assets/partners/wuerth.png";
+import veluxLogo from "@/assets/partners/velux.png";
+import rohhaeppchenLogo from "@/assets/partners/rohhaeppchen.png";
+import zenHausLogo from "@/assets/partners/zen-haus.png";
+import dammersLogo from "@/assets/partners/dammers.png";
 
 function HeroSection() {
   return (
@@ -55,12 +62,13 @@ function StatsSection() {
     { number: "100+", label: "Fertige Projekte" },
     { number: "8", label: "Fachexperten" },
     { number: "52+", label: "Zertifikate" },
+    { number: "10k+", label: "Zufriedene Kunden" },
   ];
 
   return (
     <section ref={ref} className="bg-card border-b border-border">
       <div className="container-wide py-12 md:py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 md:gap-12">
           {stats.map((stat, i) => (
             <div
               key={stat.label}
@@ -112,18 +120,62 @@ function WhyUsSection() {
               ))}
             </div>
           </div>
-          <div className={`relative ${isVisible ? 'animate-slide-right delay-200' : 'opacity-0'}`}>
+          <div className={`relative grid grid-cols-2 gap-4 ${isVisible ? 'animate-slide-right delay-200' : 'opacity-0'}`}>
             <img
-              src={workerImg}
-              alt="Dachdecker bei der Arbeit an einem Flachdach in Hamburg"
-              width={800} height={600} loading="lazy"
+              src={dachdeckereiImg}
+              alt="Dachdecker bei der Arbeit auf einem Dach in Hamburg"
+              width={480} height={384} loading="lazy"
               className="rounded-xl shadow-2xl shadow-foreground/10 w-full object-cover aspect-[4/3]"
+            />
+            <img
+              src={dachrinnenImg}
+              alt="Dachrinnenreinigung und Wartung"
+              width={480} height={720} loading="lazy"
+              className="rounded-xl shadow-2xl shadow-foreground/10 w-full object-cover aspect-[3/4] mt-8"
             />
             <div className="absolute -bottom-6 -left-6 bg-accent text-accent-foreground px-6 py-4 rounded-xl shadow-lg hidden md:block">
               <span className="font-heading font-bold text-2xl block">25+</span>
               <span className="text-xs opacity-90">Jahre Erfahrung</span>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PartnersSection() {
+  const { ref, isVisible } = useScrollReveal();
+  const partners = [
+    { src: wuerthLogo, alt: "Würth" },
+    { src: veluxLogo, alt: "Velux" },
+    { src: rohhaeppchenLogo, alt: "Rohhäppchen" },
+    { src: zenHausLogo, alt: "Zen Haus" },
+    { src: dammersLogo, alt: "Dammers – Alles fürs Dach" },
+  ];
+
+  return (
+    <section ref={ref} className="section-padding bg-section-alt border-y border-border">
+      <div className="container-wide">
+        <div className={`text-center mb-10 ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
+          <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3">Unsere Partner</p>
+          <h2 className="text-2xl md:text-3xl font-heading font-bold">
+            Vertraut von erstklassigen Marken
+          </h2>
+          <p className="text-muted-foreground mt-3 max-w-xl mx-auto">
+            Wir arbeiten mit führenden Herstellern und Marken der Dachbranche zusammen.
+          </p>
+        </div>
+        <div className={`flex flex-wrap items-center justify-center gap-8 md:gap-14 ${isVisible ? 'animate-fade-up delay-200' : 'opacity-0'}`}>
+          {partners.map((p) => (
+            <img
+              key={p.alt}
+              src={p.src}
+              alt={p.alt}
+              loading="lazy"
+              className="h-10 md:h-14 w-auto object-contain grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300"
+            />
+          ))}
         </div>
       </div>
     </section>
@@ -215,6 +267,8 @@ function FAQSection() {
     { q: "Wie lange dauert eine Dachsanierung?", a: "Die Dauer hängt vom Umfang der Arbeiten ab. Wir besprechen den Zeitplan individuell nach einer Bestandsaufnahme." },
     { q: "Welche Dacharten decken Sie ab?", a: "Wir sind auf Steildächer, Flachdächer und Gründächer spezialisiert und bieten Lösungen für jede Dachform." },
     { q: "Bieten Sie Wartungsverträge an?", a: "Ja, wir bieten regelmäßige Dachinspektionen und Wartungsverträge für die langfristige Werterhaltung." },
+    { q: "Welche Materialien verwenden Sie?", a: "Wir verwenden nur hochwertige Materialien, darunter Ziegel, Schiefer, Bitumen und moderne Abdichtungsfolien, um eine lange Lebensdauer zu gewährleisten." },
+    { q: "Wie hoch sind die Kosten für eine Dachreparatur?", a: "Die Kosten variieren je nach Schadensumfang und Material. Eine genaue Einschätzung geben wir Ihnen nach einer Besichtigung." },
     { q: "Sind Sie in Notfällen erreichbar?", a: "Ja, unser 24/7-Notdienst steht Ihnen für dringende Dachreparaturen jederzeit zur Verfügung." },
   ];
 
@@ -251,7 +305,13 @@ function FAQSection() {
 
 function RegionsSection() {
   const { ref, isVisible } = useScrollReveal();
-  const regions = ["Hamburg", "Niedersachsen", "Schleswig-Holstein", "Bremen", "Berlin", "Brandenburg", "Bayern", "Nordrhein-Westfalen", "Hessen", "Baden-Württemberg"];
+  const regions = [
+    "Hamburg", "Schleswig-Holstein", "Niedersachsen", "Bremen",
+    "Berlin", "Brandenburg", "Mecklenburg-Vorpommern",
+    "Nordrhein-Westfalen", "Hessen", "Bayern",
+    "Baden-Württemberg", "Rheinland-Pfalz", "Saarland",
+    "Sachsen-Anhalt", "Thüringen",
+  ];
 
   return (
     <section ref={ref} className="section-padding">
@@ -279,6 +339,8 @@ const faqSchema = {
     { "@type": "Question", "name": "Wie lange dauert eine Dachsanierung?", "acceptedAnswer": { "@type": "Answer", "text": "Die Dauer hängt vom Umfang der Arbeiten ab. Wir besprechen den Zeitplan individuell nach einer Bestandsaufnahme." } },
     { "@type": "Question", "name": "Welche Dacharten decken Sie ab?", "acceptedAnswer": { "@type": "Answer", "text": "Wir sind auf Steildächer, Flachdächer und Gründächer spezialisiert und bieten Lösungen für jede Dachform." } },
     { "@type": "Question", "name": "Bieten Sie Wartungsverträge an?", "acceptedAnswer": { "@type": "Answer", "text": "Ja, wir bieten regelmäßige Dachinspektionen und Wartungsverträge für die langfristige Werterhaltung." } },
+    { "@type": "Question", "name": "Welche Materialien verwenden Sie?", "acceptedAnswer": { "@type": "Answer", "text": "Wir verwenden nur hochwertige Materialien, darunter Ziegel, Schiefer, Bitumen und moderne Abdichtungsfolien, um eine lange Lebensdauer zu gewährleisten." } },
+    { "@type": "Question", "name": "Wie hoch sind die Kosten für eine Dachreparatur?", "acceptedAnswer": { "@type": "Answer", "text": "Die Kosten variieren je nach Schadensumfang und Material. Eine genaue Einschätzung geben wir Ihnen nach einer Besichtigung." } },
     { "@type": "Question", "name": "Sind Sie in Notfällen erreichbar?", "acceptedAnswer": { "@type": "Answer", "text": "Ja, unser 24/7-Notdienst steht Ihnen für dringende Dachreparaturen jederzeit zur Verfügung." } },
   ]
 };
@@ -297,6 +359,7 @@ export default function Index() {
       <WhyUsSection />
       <StepsSection />
       <ServicesOverview />
+      <PartnersSection />
       <RegionsSection />
       <FAQSection />
       <CTASection />
