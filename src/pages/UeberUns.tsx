@@ -43,8 +43,8 @@ function ValuesSection() {
             </div>
           </div>
           <div className={`grid grid-cols-2 gap-4 ${isVisible ? 'animate-slide-right delay-200' : 'opacity-0'}`}>
-            <img src={houseImg} alt="Fertiggestelltes Dachprojekt" className="rounded-xl shadow-lg object-cover aspect-[3/4] w-full" />
-            <img src={workerImg} alt="Dachdecker bei der Arbeit" className="rounded-xl shadow-lg object-cover aspect-[3/4] w-full mt-8" />
+            <img src={houseImg} alt="Fertiggestelltes Dachprojekt" width={400} height={533} loading="lazy" className="rounded-xl shadow-lg object-cover aspect-[3/4] w-full" />
+            <img src={workerImg} alt="Dachdecker bei der Arbeit" width={400} height={533} loading="lazy" className="rounded-xl shadow-lg object-cover aspect-[3/4] w-full mt-8" />
           </div>
         </div>
       </div>

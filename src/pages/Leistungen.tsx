@@ -75,6 +75,7 @@ export default function Leistungen() {
                   <img
                     src={s.image}
                     alt={s.title}
+                    width={800} height={500} loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>

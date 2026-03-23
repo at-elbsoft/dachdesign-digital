@@ -57,8 +57,8 @@ export default function MetallUndKlempnerarbeiten() {
               </div>
             </div>
             <div className="space-y-6">
-              <img src={klempnerImg} alt="Klempnerarbeiten an Metalleinfassung" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
-              <img src={rooferImg} alt="Dachdecker bei Arbeiten auf Ziegeldach" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
+              <img src={klempnerImg} alt="Klempnerarbeiten an Metalleinfassung" width={800} height={600} loading="lazy" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
+              <img src={rooferImg} alt="Dachdecker bei Arbeiten auf Ziegeldach" width={800} height={600} loading="lazy" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
             </div>
           </div>
         </div>

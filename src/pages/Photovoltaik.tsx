@@ -75,8 +75,8 @@ export default function Photovoltaik() {
 
           {/* Image Gallery */}
           <div ref={galleryRef} className={`grid sm:grid-cols-2 gap-6 mb-12 ${galleryVisible ? 'animate-fade-up' : 'opacity-0'}`}>
-            <img src={solarTilesImg} alt="Photovoltaikanlage auf Ziegeldach" className="rounded-xl shadow-md w-full object-cover aspect-[4/3]" />
-            <img src={solarModernImg} alt="Modernes Haus mit Solaranlage" className="rounded-xl shadow-md w-full object-cover aspect-[4/3]" />
+            <img src={solarTilesImg} alt="Photovoltaikanlage auf Ziegeldach" width={800} height={600} loading="lazy" className="rounded-xl shadow-md w-full object-cover aspect-[4/3]" />
+            <img src={solarModernImg} alt="Modernes Haus mit Solaranlage" width={800} height={600} loading="lazy" className="rounded-xl shadow-md w-full object-cover aspect-[4/3]" />
           </div>
 
           <div className="text-center">

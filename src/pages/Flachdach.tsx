@@ -77,7 +77,7 @@ export default function Flachdach() {
                 ))}
               </div>
             </div>
-            <img src={flatRoofImg} alt="Flachdacharbeiten in Hamburg" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
+            <img src={flatRoofImg} alt="Flachdacharbeiten in Hamburg" width={800} height={600} loading="lazy" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

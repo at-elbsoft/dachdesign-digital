@@ -116,6 +116,7 @@ function WhyUsSection() {
             <img
               src={workerImg}
               alt="Dachdecker bei der Arbeit an einem Flachdach in Hamburg"
+              width={800} height={600} loading="lazy"
               className="rounded-xl shadow-2xl shadow-foreground/10 w-full object-cover aspect-[4/3]"
             />
             <div className="absolute -bottom-6 -left-6 bg-accent text-accent-foreground px-6 py-4 rounded-xl shadow-lg hidden md:block">
