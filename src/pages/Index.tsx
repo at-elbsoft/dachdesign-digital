@@ -223,7 +223,7 @@ function ServicesOverview() {
   const services = [
     { title: "Flachdach", desc: "Langlebig, kosteneffizient und zukunftssicher – für Gewerbe und Wohnbau.", href: "/flachdach" },
     { title: "Steildach", desc: "Individuell gestaltete Steildächer mit optimalen Schutz und Ästhetik.", href: "/steildach" },
-    { title: "Photovoltaik", desc: "Solaranlagen für Ihr Dach – Energiekosten senken und Umwelt schützen.", href: "/photovoltaik" },
+    
     { title: "Reparatur & Erhaltung", desc: "Dach-Check, Reparaturen und Wartungsverträge aus einer Hand.", href: "/reparatur-und-erhaltung" },
     { title: "Metall- & Klempnerarbeiten", desc: "Hochwertige Blecharbeiten mit Kupfer, Titanzink und mehr.", href: "/metall-und-klempnerarbeiten" },
   ];
@@ -350,7 +350,7 @@ export default function Index() {
     <Layout>
       <SEOHead
         title="Dachdecker Hamburg | Lehmann Dächer & Bauklempnerei GmbH"
-        description="Ihr Meisterbetrieb für Dachdeckerarbeiten in Hamburg. Über 25 Jahre Erfahrung in Flachdach, Steildach, Photovoltaik und Bauklempnerei. 24h Notdienst ✓"
+        description="Ihr Meisterbetrieb für Dachdeckerarbeiten in Hamburg. Über 25 Jahre Erfahrung in Flachdach, Steildach und Bauklempnerei. 24h Notdienst ✓"
         path="/"
         schema={faqSchema}
       />

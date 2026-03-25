@@ -11,7 +11,7 @@ import UeberUns from "./pages/UeberUns";
 import Leistungen from "./pages/Leistungen";
 import Flachdach from "./pages/Flachdach";
 import Steildach from "./pages/Steildach";
-import Photovoltaik from "./pages/Photovoltaik";
+
 import ReparaturUndErhaltung from "./pages/ReparaturUndErhaltung";
 import MetallUndKlempnerarbeiten from "./pages/MetallUndKlempnerarbeiten";
 import Kontakt from "./pages/Kontakt";
@@ -42,7 +42,7 @@ const App = () => (
             <Route path="/leistungen" element={<Leistungen />} />
             <Route path="/flachdach" element={<Flachdach />} />
             <Route path="/steildach" element={<Steildach />} />
-            <Route path="/photovoltaik" element={<Photovoltaik />} />
+            
             <Route path="/reparatur-und-erhaltung" element={<ReparaturUndErhaltung />} />
             <Route path="/metall-und-klempnerarbeiten" element={<MetallUndKlempnerarbeiten />} />
             <Route path="/kontakt" element={<Kontakt />} />

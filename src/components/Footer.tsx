@@ -5,7 +5,7 @@ import logo from "@/assets/logo.webp";
 const SERVICES = [
   { label: "Flachdach", href: "/flachdach" },
   { label: "Steildach", href: "/steildach" },
-  { label: "Photovoltaik", href: "/photovoltaik" },
+  
   { label: "Reparatur & Erhaltung", href: "/reparatur-und-erhaltung" },
   { label: "Metall- & Klempnerarbeiten", href: "/metall-und-klempnerarbeiten" },
 ];

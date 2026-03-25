@@ -7,7 +7,7 @@ import SEOHead from "@/components/SEOHead";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import flatRoofImg from "@/assets/worker-flat-roof.png";
 import roofTilesImg from "@/assets/roof-tiles-close.png";
-import solarHeroImg from "@/assets/solar-hero.png";
+
 import dachdeckerImg from "@/assets/dachdecker-hamburg.jpeg";
 import klempnerImg from "@/assets/klempner-work.png";
 
@@ -23,12 +23,6 @@ const services = [
     desc: "Individuell nach Ihren Wünschen gestaltet und mit verschiedenen Materialien eingedeckt – optimaler Schutz und starkes Design.",
     href: "/steildach",
     image: roofTilesImg,
-  },
-  {
-    title: "Photovoltaik",
-    desc: "Sonnenenergie effizient nutzen. Unsere maßgeschneiderten Lösungen helfen Ihnen, langfristig Energiekosten zu senken.",
-    href: "/photovoltaik",
-    image: solarHeroImg,
   },
   {
     title: "Reparatur & Erhaltung",
@@ -51,12 +45,12 @@ export default function Leistungen() {
     <Layout>
       <SEOHead
         title="Leistungen | Dachdecker Hamburg – Lehmann Dächer & Bauklempnerei"
-        description="Unsere Dachdeckerleistungen: Flachdach, Steildach, Photovoltaik, Reparatur, Metall- & Klempnerarbeiten. Meisterbetrieb in Hamburg mit über 25 Jahren Erfahrung."
+        description="Unsere Dachdeckerleistungen: Flachdach, Steildach, Reparatur, Metall- & Klempnerarbeiten. Meisterbetrieb in Hamburg mit über 25 Jahren Erfahrung."
         path="/leistungen"
       />
       <PageHero
         title="Unsere Leistungen"
-        subtitle="Ob Flach- oder Steildach – wir übernehmen Neubau, Reparatur und Instandhaltung. Dazu zählen Metall- und Klempnerarbeiten sowie Photovoltaik."
+        subtitle="Ob Flach- oder Steildach – wir übernehmen Neubau, Reparatur und Instandhaltung. Dazu zählen Metall- und Klempnerarbeiten."
         breadcrumb="Leistungen"
       />
       <section ref={ref} className="section-padding-lg">
