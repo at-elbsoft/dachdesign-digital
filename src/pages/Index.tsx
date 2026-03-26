@@ -305,19 +305,14 @@ function FAQSection() {
 
 function RegionsSection() {
   const { ref, isVisible } = useScrollReveal();
-  const regions = [
-    "Hamburg", "Niedersachsen",
-    "Nordrhein-Westfalen", "Hessen", "Bayern",
-    "Baden-Württemberg", "Rheinland-Pfalz", "Saarland",
-    "Sachsen-Anhalt", "Thüringen",
-  ];
+  const regions = ["Hamburg", "Niedersachsen"];
 
   return (
     <section ref={ref} className="section-padding">
       <div className="container-wide">
         <div className={`text-center mb-10 ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
           <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3">Einsatzgebiet</p>
-          <h2 className="text-2xl md:text-3xl font-heading font-bold">Deutschlandweit für Sie tätig</h2>
+          <h2 className="text-2xl md:text-3xl font-heading font-bold">Ihr Partner in Hamburg & Niedersachsen</h2>
         </div>
         <div className={`flex flex-wrap justify-center gap-3 ${isVisible ? 'animate-fade-up delay-200' : 'opacity-0'}`}>
           {regions.map((r) => (
