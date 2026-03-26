@@ -306,8 +306,7 @@ function FAQSection() {
 function RegionsSection() {
   const { ref, isVisible } = useScrollReveal();
   const regions = [
-    "Hamburg", "Schleswig-Holstein", "Niedersachsen", "Bremen",
-    "Berlin", "Brandenburg", "Mecklenburg-Vorpommern",
+    "Hamburg", "Niedersachsen",
     "Nordrhein-Westfalen", "Hessen", "Bayern",
     "Baden-Württemberg", "Rheinland-Pfalz", "Saarland",
     "Sachsen-Anhalt", "Thüringen",
