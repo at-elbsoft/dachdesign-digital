@@ -64,6 +64,7 @@ export function AppRoutes() {
         <Route path="/steildach" element={<Steildach />} />
         <Route path="/reparatur-und-erhaltung" element={<ReparaturUndErhaltung />} />
         <Route path="/dachrinnenreinigung" element={<Dachrinnenreinigung />} />
+        <Route path="/dachrinnenreinigung/:ort" element={<DachrinnenreinigungOrt />} />
         <Route path="/metall-und-klempnerarbeiten" element={<MetallUndKlempnerarbeiten />} />
         <Route path="/kontakt" element={<Kontakt />} />
         <Route path="/jobs" element={<Jobs />} />
