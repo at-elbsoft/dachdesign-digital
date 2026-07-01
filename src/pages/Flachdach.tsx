@@ -100,7 +100,7 @@ export default function Flachdach() {
 
           <div className="mt-12 text-center">
             <a
-              href="tel:01761351438"
+              href="tel:+4917613514385"
               className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-6 py-3 rounded-lg font-semibold text-sm hover:shadow-lg hover:shadow-accent/20 transition-all duration-150 active:scale-[0.97]"
             >
               <Phone className="w-4 h-4" />

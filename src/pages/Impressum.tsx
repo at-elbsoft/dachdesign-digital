@@ -14,7 +14,7 @@ export default function Impressum() {
             <strong>Firma:</strong> Lehmann Dächer & Bauklempnerei GmbH<br />
             <strong>Vertretungsberechtigter Geschäftsführer:</strong> Ballal Ghafari<br />
             <strong>Adresse:</strong> Grützmühle 23, 21218 Seevetal<br />
-            <strong>Telefon:</strong> <a href="tel:01761351438">0176 1351 4385</a><br />
+            <strong>Telefon:</strong> <a href="tel:+4917613514385">0176 1351 4385</a><br />
             <strong>E-Mail:</strong> <a href="mailto:kontakt@ldbauklempnerei.de">kontakt@ldbauklempnerei.de</a><br />
             <strong>Webseite:</strong> www.ldbauklempnerei.de
           </p>

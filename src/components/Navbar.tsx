@@ -99,7 +99,7 @@ export default function Navbar() {
 
         <div className="flex items-center gap-3">
           <a
-            href="tel:01761351438"
+            href="tel:+4917613514385"
             className="hidden md:flex items-center gap-2 bg-accent text-accent-foreground px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-150 hover:shadow-md hover:shadow-accent/20 active:scale-[0.97]"
           >
             <Phone className="w-4 h-4" />
@@ -145,7 +145,7 @@ export default function Navbar() {
               </div>
             ))}
             <a
-              href="tel:01761351438"
+              href="tel:+4917613514385"
               className="flex items-center justify-center gap-2 bg-accent text-accent-foreground px-5 py-3 rounded-lg text-sm font-semibold mt-4 active:scale-[0.97] transition-transform"
             >
               <Phone className="w-4 h-4" />
