@@ -1,4 +1,5 @@
 import { CheckCircle2, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
@@ -10,6 +11,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { orte } from "@/data/dachrinnenreinigungOrte";
 import dachrinnenImg from "@/assets/dachrinnenreinigung.jpeg";
 import dachrinnenDetailImg from "@/assets/dachrinnen-reinigung-detail.jpg";
 import dachrinneVorherImg from "@/assets/dachrinne-vorher.jpg";
@@ -98,6 +100,7 @@ export default function Dachrinnenreinigung() {
   const { ref: targetRef, isVisible: targetVisible } = useScrollReveal();
   const { ref: stepsRef, isVisible: stepsVisible } = useScrollReveal();
   const { ref: beforeAfterRef, isVisible: beforeAfterVisible } = useScrollReveal();
+  const { ref: locationsRef, isVisible: locationsVisible } = useScrollReveal();
   const { ref: faqRef, isVisible: faqVisible } = useScrollReveal();
 
   return (
@@ -230,7 +233,33 @@ export default function Dachrinnenreinigung() {
         </div>
       </section>
 
-      <section ref={faqRef} className="section-padding-lg">
+      <section ref={locationsRef} className="section-padding-lg">
+        <div className="container-wide">
+          <div className={`${locationsVisible ? 'animate-fade-up' : 'opacity-0'}`}>
+            <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3 text-center">Vor Ort</p>
+            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4 text-center leading-tight">
+              Dachrinnenreinigung in Ihrer Region
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-10 text-center max-w-2xl mx-auto">
+              Wir sind im gesamten Großraum Hamburg und im nördlichen Niedersachsen im Einsatz. Wählen Sie Ihren Ort für Details zu unserer Dachrinnenreinigung vor Ort.
+            </p>
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 max-w-4xl mx-auto">
+              {orte.map((o) => (
+                <Link
+                  key={o.slug}
+                  to={`/dachrinnenreinigung/${o.slug}`}
+                  className="flex items-center justify-between gap-2 bg-background rounded-lg px-4 py-3 shadow-sm border border-border hover:border-accent hover:shadow-md transition-all duration-150"
+                >
+                  <span className="text-sm font-medium">Dachrinnenreinigung {o.name}</span>
+                  <span aria-hidden className="text-accent">→</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section ref={faqRef} className="section-padding-lg bg-muted/30">
         <div className="container-wide max-w-3xl">
           <div className={`${faqVisible ? 'animate-fade-up' : 'opacity-0'}`}>
             <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3 text-center">FAQ</p>
