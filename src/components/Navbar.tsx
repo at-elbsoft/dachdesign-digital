@@ -106,6 +106,15 @@ export default function Navbar() {
             <Phone className="w-4 h-4" />
             0176 1351 4385
           </a>
+          <a
+            href="https://wa.me/4917613514385?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Dachrinnenreinigung"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp Chat öffnen"
+            className="hidden md:flex items-center justify-center w-9 h-9 rounded-lg bg-[#25D366] text-white transition-all duration-150 hover:shadow-md hover:scale-105 active:scale-95"
+          >
+            <WhatsAppIcon className="w-4 h-4" />
+          </a>
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="lg:hidden p-2 rounded-md text-foreground hover:bg-muted active:scale-95 transition-all duration-150"
