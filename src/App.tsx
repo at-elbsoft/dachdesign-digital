@@ -14,7 +14,7 @@ import Steildach from "./pages/Steildach";
 
 import ReparaturUndErhaltung from "./pages/ReparaturUndErhaltung";
 import Dachrinnenreinigung from "./pages/Dachrinnenreinigung";
-import Kontakt from "./pages/Kontakt";
+import MetallUndKlempnerarbeiten from "./pages/MetallUndKlempnerarbeiten";
 import Jobs from "./pages/Jobs";
 import Impressum from "./pages/Impressum";
 import Datenschutz from "./pages/Datenschutz";
@@ -43,6 +43,7 @@ const App = () => (
             <Route path="/flachdach" element={<Flachdach />} />
             <Route path="/steildach" element={<Steildach />} />
             
+            <Route path="/reparatur-und-erhaltung" element={<ReparaturUndErhaltung />} />
             <Route path="/dachrinnenreinigung" element={<Dachrinnenreinigung />} />
             <Route path="/metall-und-klempnerarbeiten" element={<MetallUndKlempnerarbeiten />} />
             <Route path="/kontakt" element={<Kontakt />} />

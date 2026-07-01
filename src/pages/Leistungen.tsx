@@ -10,6 +10,7 @@ import roofTilesImg from "@/assets/roof-tiles-close.png";
 
 import dachdeckerImg from "@/assets/dachdecker-hamburg.jpeg";
 import dachrinnenImg from "@/assets/dachrinnenreinigung.jpeg";
+import klempnerImg from "@/assets/klempner-work.png";
 
 const services = [
   {
@@ -23,6 +24,12 @@ const services = [
     desc: "Individuell nach Ihren Wünschen gestaltet und mit verschiedenen Materialien eingedeckt – optimaler Schutz und starkes Design.",
     href: "/steildach",
     image: roofTilesImg,
+  },
+  {
+    title: "Reparatur & Erhaltung",
+    desc: "Von der Dachinspektion über fachgerechte Reparaturen bis hin zur regelmäßigen Wartung – alles aus einer Hand.",
+    href: "/reparatur-und-erhaltung",
+    image: dachdeckerImg,
   },
   {
     title: "Dachrinnenreinigung",
