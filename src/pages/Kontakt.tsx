@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import SEOHead from "@/components/SEOHead";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { trackEvent } from "@/lib/analytics";
 
 export default function Kontakt() {
   const { ref, isVisible } = useScrollReveal();
@@ -12,6 +13,7 @@ export default function Kontakt() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    trackEvent('generate_lead', { form_name: 'kontaktformular', value: 1 });
     window.location.href = `mailto:kontakt@ldbauklempnerei.de?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nTelefon: ${formData.phone}\nE-Mail: ${formData.email}\n\n${formData.message}`)}`;
   };
 
