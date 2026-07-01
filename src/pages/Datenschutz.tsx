@@ -35,7 +35,7 @@ export default function Datenschutz() {
           <p>
             Lehmann Dächer & Bauklempnerei GmbH<br />
             Ballal Ghafari<br />
-            Grützmühle 23<br />
+            Graubergen 19<br />
             21218 Seevetal<br />
             Telefon: 0176 1351 4385<br />
             E-Mail: kontakt@ldbauklempnerei.de
