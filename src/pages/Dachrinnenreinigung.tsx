@@ -12,6 +12,8 @@ import {
 } from "@/components/ui/accordion";
 import dachrinnenImg from "@/assets/dachrinnenreinigung.jpeg";
 import dachrinnenDetailImg from "@/assets/dachrinnen-reinigung-detail.jpg";
+import dachrinneVorherImg from "@/assets/dachrinne-vorher.jpg";
+import dachrinneNachherImg from "@/assets/dachrinne-nachher.jpg";
 
 const faqs = [
   {
@@ -75,8 +77,27 @@ const faqSchema = {
   })),
 };
 
+const targetGroups = [
+  "Einfamilienhäuser",
+  "Mehrfamilienhäuser",
+  "Eigentümergemeinschaften",
+  "Hausverwaltungen",
+  "Gewerbeimmobilien/Hallen",
+];
+
+const steps = [
+  "Kontakt aufnehmen – anrufen oder Formular ausfüllen",
+  "Kostenlosen Vor-Ort-Termin vereinbaren",
+  "Unverbindliches Angebot erhalten",
+  "Reinigungstermin abstimmen",
+  "Freie Dachrinne genießen – ohne Verstopfungsrisiko",
+];
+
 export default function Dachrinnenreinigung() {
   const { ref, isVisible } = useScrollReveal();
+  const { ref: targetRef, isVisible: targetVisible } = useScrollReveal();
+  const { ref: stepsRef, isVisible: stepsVisible } = useScrollReveal();
+  const { ref: beforeAfterRef, isVisible: beforeAfterVisible } = useScrollReveal();
   const { ref: faqRef, isVisible: faqVisible } = useScrollReveal();
 
   return (
@@ -135,7 +156,81 @@ export default function Dachrinnenreinigung() {
           </div>
         </div>
       </section>
-      <section ref={faqRef} className="section-padding-lg bg-muted/30">
+
+      <section ref={targetRef} className="section-padding-lg bg-muted/30">
+        <div className="container-wide">
+          <div className={`max-w-3xl mx-auto ${targetVisible ? 'animate-fade-up' : 'opacity-0'}`}>
+            <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3 text-center">Für jedes Objekt</p>
+            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4 text-center leading-tight">
+              Für wen ist unsere Dachrinnenreinigung ideal?
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-8 text-center">
+              Eine regelmäßige Dachrinnenreinigung schützt den Wert Ihrer Immobilie und verhindert kostspielige Feuchtigkeitsschäden. Unser Service ist die richtige Wahl für:
+            </p>
+            <ul className="grid sm:grid-cols-2 gap-3 mb-8">
+              {targetGroups.map((group) => (
+                <li key={group} className="flex items-center gap-3 bg-background rounded-lg px-4 py-3 shadow-sm border border-border">
+                  <CheckCircle2 className="w-5 h-5 text-accent shrink-0" />
+                  <span className="font-medium text-sm">{group}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="text-muted-foreground leading-relaxed text-center">
+              Ob Privatkunde, Verwaltung oder Gewerbetreibender: Wir sorgen dafür, dass Ihre Dachrinne und Fallrohre das ganze Jahr über zuverlässig funktionieren.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section ref={stepsRef} className="section-padding-lg">
+        <div className="container-wide">
+          <div className={`${stepsVisible ? 'animate-fade-up' : 'opacity-0'}`}>
+            <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3 text-center">Ablauf</p>
+            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4 text-center leading-tight">
+              So einfach geht's
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-10 text-center max-w-2xl mx-auto">
+              In fünf Schritten zu einer freien Dachrinne – transparent, unverbindlich und auf Ihre Terminwünsche abgestimmt.
+            </p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+              {steps.map((step, index) => (
+                <div key={index} className="relative bg-background rounded-xl p-6 shadow-sm border border-border text-center">
+                  <div className="w-10 h-10 rounded-full bg-accent text-accent-foreground flex items-center justify-center font-heading font-bold text-lg mx-auto mb-4">
+                    {index + 1}
+                  </div>
+                  <p className="text-sm font-medium leading-snug">{step}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section ref={beforeAfterRef} className="section-padding-lg bg-muted/30">
+        <div className="container-wide">
+          <div className={`${beforeAfterVisible ? 'animate-fade-up' : 'opacity-0'}`}>
+            <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3 text-center">Ergebnis</p>
+            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4 text-center leading-tight">
+              Vorher / Nachher
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-10 text-center max-w-2xl mx-auto">
+              Der Unterschied ist deutlich sichtbar: Während eine verstopfte Dachrinne Wasser überlaufen lässt, leitet eine saubere Rinne Regenwasser zuverlässig ab.
+            </p>
+            <div className="grid md:grid-cols-2 gap-6 lg:gap-10">
+              <div className="space-y-3">
+                <img src={dachrinneVorherImg} alt="Dachrinne vor der Reinigung – voll mit Laub und Schmutz" width={1024} height={768} loading="lazy" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
+                <p className="text-center font-semibold text-sm">Vorher – verstopfte, verlaubte Rinne</p>
+              </div>
+              <div className="space-y-3">
+                <img src={dachrinneNachherImg} alt="Dachrinne nach der Reinigung – sauber und frei" width={1024} height={768} loading="lazy" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
+                <p className="text-center font-semibold text-sm">Nachher – saubere, freie Dachrinne</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section ref={faqRef} className="section-padding-lg">
         <div className="container-wide max-w-3xl">
           <div className={`${faqVisible ? 'animate-fade-up' : 'opacity-0'}`}>
             <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3 text-center">FAQ</p>
