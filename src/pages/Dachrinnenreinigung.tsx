@@ -100,6 +100,7 @@ export default function Dachrinnenreinigung() {
   const { ref: targetRef, isVisible: targetVisible } = useScrollReveal();
   const { ref: stepsRef, isVisible: stepsVisible } = useScrollReveal();
   const { ref: beforeAfterRef, isVisible: beforeAfterVisible } = useScrollReveal();
+  const { ref: locationsRef, isVisible: locationsVisible } = useScrollReveal();
   const { ref: faqRef, isVisible: faqVisible } = useScrollReveal();
 
   return (
