@@ -14,6 +14,7 @@ import Steildach from "./pages/Steildach";
 
 import ReparaturUndErhaltung from "./pages/ReparaturUndErhaltung";
 import Dachrinnenreinigung from "./pages/Dachrinnenreinigung";
+import DachrinnenreinigungOrt from "./pages/DachrinnenreinigungOrt";
 import MetallUndKlempnerarbeiten from "./pages/MetallUndKlempnerarbeiten";
 import Kontakt from "./pages/Kontakt";
 import Jobs from "./pages/Jobs";
