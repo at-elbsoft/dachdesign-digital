@@ -5,7 +5,7 @@ import CTASection from "@/components/CTASection";
 import SEOHead from "@/components/SEOHead";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import dachrinnenImg from "@/assets/dachrinnenreinigung.jpeg";
-import dachdeckerImg from "@/assets/dachdecker-hamburg.jpeg";
+import dachrinnenDetailImg from "@/assets/dachrinnen-reinigung-detail.jpg";
 
 export default function Dachrinnenreinigung() {
   const { ref, isVisible } = useScrollReveal();
