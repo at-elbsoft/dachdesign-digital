@@ -16,7 +16,7 @@ import ReparaturUndErhaltung from "./pages/ReparaturUndErhaltung";
 import Dachrinnenreinigung from "./pages/Dachrinnenreinigung";
 import MetallUndKlempnerarbeiten from "./pages/MetallUndKlempnerarbeiten";
 import Kontakt from "./pages/Kontakt";
-import Impressum from "./pages/Impressum";
+import Jobs from "./pages/Jobs";
 import Datenschutz from "./pages/Datenschutz";
 import NotFound from "./pages/NotFound";
 
