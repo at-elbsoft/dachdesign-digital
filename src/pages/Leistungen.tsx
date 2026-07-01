@@ -9,7 +9,7 @@ import flatRoofImg from "@/assets/worker-flat-roof.png";
 import roofTilesImg from "@/assets/roof-tiles-close.png";
 
 import dachdeckerImg from "@/assets/dachdecker-hamburg.jpeg";
-import klempnerImg from "@/assets/klempner-work.png";
+import dachrinnenImg from "@/assets/dachrinnenreinigung.jpeg";
 
 const services = [
   {
@@ -25,10 +25,10 @@ const services = [
     image: roofTilesImg,
   },
   {
-    title: "Reparatur & Erhaltung",
-    desc: "Von der Dachinspektion über fachgerechte Reparaturen bis hin zur regelmäßigen Wartung – alles aus einer Hand.",
-    href: "/reparatur-und-erhaltung",
-    image: dachdeckerImg,
+    title: "Dachrinnenreinigung",
+    desc: "Laub, Moos und Schmutz verstopfen Dachrinnen – wir sorgen dafür, dass Regenwasser wieder ungehindert abfließen kann.",
+    href: "/dachrinnenreinigung",
+    image: dachrinnenImg,
   },
   {
     title: "Metall- & Klempnerarbeiten",
