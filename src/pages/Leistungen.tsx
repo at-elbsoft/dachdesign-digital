@@ -52,7 +52,7 @@ export default function Leistungen() {
     <Layout>
       <SEOHead
         title="Leistungen | Dachdecker Hamburg – Lehmann Dächer & Bauklempnerei"
-        description="Unsere Dachdeckerleistungen: Flachdach, Steildach, Reparatur, Metall- & Klempnerarbeiten. Meisterbetrieb in Hamburg mit über 25 Jahren Erfahrung."
+        description="Unsere Dachdeckerleistungen: Flachdach, Steildach, Dachrinnenreinigung, Reparatur, Metall- & Klempnerarbeiten. Meisterbetrieb in Hamburg mit über 25 Jahren Erfahrung."
         path="/leistungen"
       />
       <PageHero
