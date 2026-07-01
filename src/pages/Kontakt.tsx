@@ -37,7 +37,7 @@ export default function Kontakt() {
               <div>
                 <h2 className="text-xl font-heading font-bold mb-6">So erreichen Sie uns</h2>
                 <div className="space-y-5">
-                  <a href="tel:01761351438" className="flex gap-3 group">
+                  <a href="tel:+4917613514385" className="flex gap-3 group">
                     <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
                       <Phone className="w-5 h-5 text-accent" />
                     </div>

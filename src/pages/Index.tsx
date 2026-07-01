@@ -35,7 +35,7 @@ function HeroSection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-up delay-300">
             <a
-              href="tel:01761351438"
+              href="tel:+4917613514385"
               className="flex items-center justify-center gap-2 bg-accent text-accent-foreground px-7 py-3.5 rounded-lg font-semibold hover:shadow-lg hover:shadow-accent/25 transition-all duration-150 active:scale-[0.97]"
             >
               <Phone className="w-4 h-4" />

@@ -36,7 +36,7 @@ export default function Footer() {
               Ihr Meisterbetrieb für Dacharbeiten in Hamburg und Umgebung. Über 25 Jahre Erfahrung in Dachdeckerei und Bauklempnerei.
             </p>
             <div className="space-y-3 text-sm">
-              <a href="tel:01761351438" className="flex items-center gap-2 opacity-80 hover:opacity-100 transition-opacity">
+              <a href="tel:+4917613514385" className="flex items-center gap-2 opacity-80 hover:opacity-100 transition-opacity">
                 <Phone className="w-4 h-4 shrink-0" /> 0176 1351 4385
               </a>
               <a href="mailto:kontakt@ldbauklempnerei.de" className="flex items-center gap-2 opacity-80 hover:opacity-100 transition-opacity">
@@ -84,7 +84,7 @@ export default function Footer() {
               <p className="font-semibold text-accent">24h Notdienst verfügbar</p>
             </div>
             <a
-              href="tel:01761351438"
+              href="tel:+4917613514385"
               className="inline-flex items-center gap-2 mt-6 bg-accent text-accent-foreground px-5 py-2.5 rounded-lg text-sm font-semibold hover:shadow-md hover:shadow-accent/20 transition-all duration-150 active:scale-[0.97]"
             >
               <Phone className="w-4 h-4" />
