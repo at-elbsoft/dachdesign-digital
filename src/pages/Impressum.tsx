@@ -5,7 +5,7 @@ import SEOHead from "@/components/SEOHead";
 export default function Impressum() {
   return (
     <Layout>
-      <SEOHead title="Impressum | Lehmann Dächer & Bauklempnerei GmbH" description="Impressum der Lehmann Dächer & Bauklempnerei GmbH, Grützmühle 23, 21218 Seevetal." path="/impressum" />
+      <SEOHead title="Impressum | Lehmann Dächer & Bauklempnerei GmbH" description="Impressum der Lehmann Dächer & Bauklempnerei GmbH, Graubergen 19, 21218 Seevetal." path="/impressum" />
       <PageHero title="Impressum" breadcrumb="Impressum" />
       <section className="section-padding">
         <div className="container-tight prose prose-sm max-w-3xl">
@@ -13,7 +13,7 @@ export default function Impressum() {
           <p>
             <strong>Firma:</strong> Lehmann Dächer & Bauklempnerei GmbH<br />
             <strong>Vertretungsberechtigter Geschäftsführer:</strong> Ballal Ghafari<br />
-            <strong>Adresse:</strong> Grützmühle 23, 21218 Seevetal<br />
+            <strong>Adresse:</strong> Graubergen 19, 21218 Seevetal<br />
             <strong>Telefon:</strong> <a href="tel:+4917613514385">0176 1351 4385</a><br />
             <strong>E-Mail:</strong> <a href="mailto:kontakt@ldbauklempnerei.de">kontakt@ldbauklempnerei.de</a><br />
             <strong>Webseite:</strong> www.ldbauklempnerei.de
@@ -30,7 +30,7 @@ export default function Impressum() {
           </p>
 
           <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
-          <p>Ballal Ghafari, Grützmühle 23, 21218 Seevetal</p>
+          <p>Ballal Ghafari, Graubergen 19, 21218 Seevetal</p>
 
           <h2>Haftungsausschluss (Disclaimer)</h2>
           <h3>Haftung für Inhalte</h3>

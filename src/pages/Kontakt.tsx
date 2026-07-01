@@ -76,7 +76,7 @@ export default function Kontakt() {
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground">Adresse</p>
-                      <p className="font-semibold">Grützmühle 23, 21218 Seevetal</p>
+                      <p className="font-semibold">Graubergen 19, 21218 Seevetal</p>
                     </div>
                   </div>
                 </div>

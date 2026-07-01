@@ -47,7 +47,10 @@ export default function Footer() {
                 <Mail className="w-4 h-4 shrink-0" /> kontakt@ldbauklempnerei.de
               </a>
               <div className="flex items-start gap-2 opacity-80">
-                <MapPin className="w-4 h-4 shrink-0 mt-0.5" /> Grützmühle 23, 21218 Seevetal
+                <MapPin className="w-4 h-4 shrink-0 mt-0.5" /> Graubergen 19, 21218 Seevetal
+              </div>
+              <div className="flex items-start gap-2 opacity-80">
+                <span className="w-4 h-4 shrink-0 text-center text-xs mt-0.5">🕒</span> Mo–Fr: 06:00 – 18:00 Uhr
               </div>
             </div>
           </div>
