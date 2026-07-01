@@ -4,6 +4,9 @@ import { Menu, X, Phone } from "lucide-react";
 import WhatsAppIcon from "./WhatsAppIcon";
 import logo from "@/assets/logo.webp";
 
+const WHATSAPP_URL =
+  "https://wa.me/4917613514385?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Dachrinnenreinigung";
+
 const NAV_ITEMS = [
   { label: "Willkommen", href: "/" },
   {
@@ -107,7 +110,7 @@ export default function Navbar() {
             0176 1351 4385
           </a>
           <a
-            href="https://wa.me/4917613514385?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Dachrinnenreinigung"
+            href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="WhatsApp Chat öffnen"
@@ -154,13 +157,25 @@ export default function Navbar() {
                 ))}
               </div>
             ))}
-            <a
-              href="tel:+4917613514385"
-              className="flex items-center justify-center gap-2 bg-accent text-accent-foreground px-5 py-3 rounded-lg text-sm font-semibold mt-4 active:scale-[0.97] transition-transform"
-            >
-              <Phone className="w-4 h-4" />
-              Jetzt anrufen
-            </a>
+            <div className="flex items-center gap-3 mt-4">
+              <a
+                href="tel:+4917613514385"
+                className="flex-1 flex items-center justify-center gap-2 bg-accent text-accent-foreground px-5 py-3 rounded-lg text-sm font-semibold active:scale-[0.97] transition-transform"
+              >
+                <Phone className="w-4 h-4" />
+                Jetzt anrufen
+              </a>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp Chat öffnen"
+                className="flex items-center justify-center gap-2 bg-[#25D366] text-white px-5 py-3 rounded-lg text-sm font-semibold active:scale-[0.97] transition-transform"
+              >
+                <WhatsAppIcon className="w-4 h-4" />
+                WhatsApp
+              </a>
+            </div>
           </nav>
         </div>
       )}
