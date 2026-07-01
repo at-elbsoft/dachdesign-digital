@@ -9,6 +9,7 @@ import flatRoofImg from "@/assets/worker-flat-roof.png";
 import roofTilesImg from "@/assets/roof-tiles-close.png";
 
 import dachdeckerImg from "@/assets/dachdecker-hamburg.jpeg";
+import dachrinnenImg from "@/assets/dachrinnenreinigung.jpeg";
 import klempnerImg from "@/assets/klempner-work.png";
 
 const services = [
@@ -31,6 +32,12 @@ const services = [
     image: dachdeckerImg,
   },
   {
+    title: "Dachrinnenreinigung",
+    desc: "Laub, Moos und Schmutz verstopfen Dachrinnen – wir sorgen dafür, dass Regenwasser wieder ungehindert abfließen kann.",
+    href: "/dachrinnenreinigung",
+    image: dachrinnenImg,
+  },
+  {
     title: "Metall- & Klempnerarbeiten",
     desc: "Hochwertige Metallverkleidungen für Schutz und Eleganz – Kantungen, Stehfalz, Einfassungen und mehr.",
     href: "/metall-und-klempnerarbeiten",
@@ -45,7 +52,7 @@ export default function Leistungen() {
     <Layout>
       <SEOHead
         title="Leistungen | Dachdecker Hamburg – Lehmann Dächer & Bauklempnerei"
-        description="Unsere Dachdeckerleistungen: Flachdach, Steildach, Reparatur, Metall- & Klempnerarbeiten. Meisterbetrieb in Hamburg mit über 25 Jahren Erfahrung."
+        description="Unsere Dachdeckerleistungen: Flachdach, Steildach, Dachrinnenreinigung, Reparatur, Metall- & Klempnerarbeiten. Meisterbetrieb in Hamburg mit über 25 Jahren Erfahrung."
         path="/leistungen"
       />
       <PageHero
