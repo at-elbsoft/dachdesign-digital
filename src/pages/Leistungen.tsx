@@ -45,6 +45,29 @@ const services = [
   },
 ];
 
+const BASE_URL = "https://ldbauklempnerei.de";
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Leistungen – Lehmann Dächer & Bauklempnerei GmbH",
+  "itemListElement": services.map((s, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": s.title,
+    "url": `${BASE_URL}${s.href}`,
+  })),
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Startseite", "item": `${BASE_URL}/` },
+    { "@type": "ListItem", "position": 2, "name": "Leistungen", "item": `${BASE_URL}/leistungen` },
+  ],
+};
+
 export default function Leistungen() {
   const { ref, isVisible } = useScrollReveal();
 
@@ -54,12 +77,14 @@ export default function Leistungen() {
         title="Leistungen | Dachdecker Hamburg – Lehmann Dächer & Bauklempnerei"
         description="Unsere Dachdeckerleistungen: Flachdach, Steildach, Dachrinnenreinigung, Reparatur, Metall- & Klempnerarbeiten. Meisterbetrieb in Hamburg mit über 25 Jahren Erfahrung."
         path="/leistungen"
+        schema={{ "@context": "https://schema.org", "@graph": [itemListSchema, breadcrumbSchema] }}
       />
       <PageHero
         title="Unsere Leistungen"
         subtitle="Ob Flach- oder Steildach – wir übernehmen Neubau, Reparatur und Instandhaltung. Dazu zählen Metall- und Klempnerarbeiten."
         breadcrumb="Leistungen"
       />
+
       <section ref={ref} className="section-padding-lg">
         <div className="container-wide">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
