@@ -4,11 +4,80 @@ import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
 import SEOHead from "@/components/SEOHead";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import dachrinnenImg from "@/assets/dachrinnenreinigung.jpeg";
 import dachrinnenDetailImg from "@/assets/dachrinnen-reinigung-detail.jpg";
 
+const faqs = [
+  {
+    question: "Wie oft sollte man die Dachrinne reinigen lassen?",
+    answer: "In der Regel ein- bis zweimal pro Jahr, idealerweise im Herbst nach dem Laubfall und im Frühjahr. Bei vielen Bäumen in der Umgebung häufiger.",
+  },
+  {
+    question: "Woran erkenne ich eine verstopfte Dachrinne?",
+    answer: "Überlaufendes Wasser bei Regen, Pflanzenbewuchs in der Rinne, Feuchtigkeitsflecken an der Fassade oder tropfende Fallrohre sind typische Anzeichen.",
+  },
+  {
+    question: "Was kostet eine Dachrinnenreinigung?",
+    answer: "Der Preis hängt von Länge der Rinnen, Höhe und Zugänglichkeit ab. Sie erhalten von uns vorab ein kostenloses, unverbindliches Angebot.",
+  },
+  {
+    question: "Reinigen Sie auch die Fallrohre?",
+    answer: "Ja, Fallrohre gehören dazu. Wir prüfen und spülen sie, damit das Wasser vollständig abfließen kann.",
+  },
+  {
+    question: "Was passiert mit dem entfernten Laub und Schmutz?",
+    answer: "Wir sammeln alles ein und entsorgen es fachgerecht – nichts bleibt in Beeten oder auf dem Grundstück.",
+  },
+  {
+    question: "Ab welcher Höhe/Gebäudeart reinigen Sie?",
+    answer: "Von Einfamilienhäusern bis zu Mehrfamilienhäusern, Gewerbeobjekten und Hallen. Wir arbeiten mit geeigneter Sicherheitsausrüstung und Hebetechnik.",
+  },
+  {
+    question: "Prüfen Sie die Dachrinne auch auf Schäden?",
+    answer: "Ja, auf Wunsch führen wir eine Sichtprüfung durch und erledigen kleinere Reparaturen direkt vor Ort.",
+  },
+  {
+    question: "Wie schnell bekomme ich einen Termin?",
+    answer: "In der Regel kurzfristig. Rufen Sie an oder senden Sie eine Anfrage – wir melden uns zeitnah.",
+  },
+];
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Dachrinnenreinigung",
+  "provider": {
+    "@type": "RoofingContractor",
+    "name": "Lehmann Dächer & Bauklempnerei GmbH",
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Hamburg",
+  },
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer,
+    },
+  })),
+};
+
 export default function Dachrinnenreinigung() {
   const { ref, isVisible } = useScrollReveal();
+  const { ref: faqRef, isVisible: faqVisible } = useScrollReveal();
 
   return (
     <Layout>
@@ -16,7 +85,7 @@ export default function Dachrinnenreinigung() {
         title="Dachrinnenreinigung Hamburg | Lehmann Dächer & Bauklempnerei"
         description="Professionelle Dachrinnenreinigung in Hamburg: Reinigung von Dachrinnen und Fallrohren, Entfernung von Laub und Moos, Sichtprüfung und kleine Reparaturen."
         path="/dachrinnenreinigung"
-        schema={{ "@context": "https://schema.org", "@type": "Service", "serviceType": "Dachrinnenreinigung", "provider": { "@type": "RoofingContractor", "name": "Lehmann Dächer & Bauklempnerei GmbH" }, "areaServed": { "@type": "City", "name": "Hamburg" } }}
+        schema={{ "@context": "https://schema.org", "@graph": [serviceSchema, faqSchema] }}
       />
       <PageHero
         title="Dachrinnenreinigung"
@@ -63,6 +132,28 @@ export default function Dachrinnenreinigung() {
               <img src={dachrinnenImg} alt="Dachrinnenreinigung in Hamburg" width={800} height={600} loading="lazy" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
               <img src={dachrinnenDetailImg} alt="Dachrinnenreinigung - Laub und Schmutz entfernen" width={1024} height={768} loading="lazy" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
             </div>
+          </div>
+        </div>
+      </section>
+      <section ref={faqRef} className="section-padding-lg bg-muted/30">
+        <div className="container-wide max-w-3xl">
+          <div className={`${faqVisible ? 'animate-fade-up' : 'opacity-0'}`}>
+            <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3 text-center">FAQ</p>
+            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-8 text-center leading-tight">
+              Häufige Fragen zur Dachrinnenreinigung
+            </h2>
+            <Accordion type="single" collapsible className="w-full">
+              {faqs.map((faq, index) => (
+                <AccordionItem key={index} value={`item-${index}`}>
+                  <AccordionTrigger className="text-left text-base">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground leading-relaxed">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </div>
       </section>
