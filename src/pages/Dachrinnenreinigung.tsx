@@ -61,7 +61,7 @@ export default function Dachrinnenreinigung() {
             </div>
             <div className="space-y-6">
               <img src={dachrinnenImg} alt="Dachrinnenreinigung in Hamburg" width={800} height={600} loading="lazy" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
-              <img src={dachdeckerImg} alt="Dachdecker bei der Arbeit" width={800} height={600} loading="lazy" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
+              <img src={dachrinnenDetailImg} alt="Dachrinnenreinigung - Laub und Schmutz entfernen" width={1024} height={768} loading="lazy" className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]" />
             </div>
           </div>
         </div>
