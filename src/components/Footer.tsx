@@ -87,13 +87,25 @@ export default function Footer() {
               <p>Mo – Fr: 06:00 – 18:00 Uhr</p>
               <p className="font-semibold text-accent">24h Notdienst verfügbar</p>
             </div>
-            <a
-              href="tel:+4917613514385"
-              className="inline-flex items-center gap-2 mt-6 bg-accent text-accent-foreground px-5 py-2.5 rounded-lg text-sm font-semibold hover:shadow-md hover:shadow-accent/20 transition-all duration-150 active:scale-[0.97]"
-            >
-              <Phone className="w-4 h-4" />
-              Jetzt anrufen
-            </a>
+            <div className="flex flex-wrap items-center gap-3 mt-6">
+              <a
+                href="tel:+4917613514385"
+                className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-5 py-2.5 rounded-lg text-sm font-semibold hover:shadow-md hover:shadow-accent/20 transition-all duration-150 active:scale-[0.97]"
+              >
+                <Phone className="w-4 h-4" />
+                Jetzt anrufen
+              </a>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp Chat öffnen"
+                className="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:shadow-md hover:shadow-[#25D366]/20 transition-all duration-150 active:scale-[0.97]"
+              >
+                <WhatsAppIcon className="w-4 h-4" />
+                WhatsApp
+              </a>
+            </div>
           </div>
         </div>
       </div>
