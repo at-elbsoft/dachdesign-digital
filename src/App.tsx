@@ -17,6 +17,9 @@ import Dachrinnenreinigung from "./pages/Dachrinnenreinigung";
 import MetallUndKlempnerarbeiten from "./pages/MetallUndKlempnerarbeiten";
 import Kontakt from "./pages/Kontakt";
 import Jobs from "./pages/Jobs";
+import Impressum from "./pages/Impressum";
+import Datenschutz from "./pages/Datenschutz";
+import NotFound from "./pages/NotFound";
 import Datenschutz from "./pages/Datenschutz";
 import NotFound from "./pages/NotFound";
 
