@@ -1,4 +1,5 @@
 import { CheckCircle2, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
@@ -10,6 +11,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { orte } from "@/data/dachrinnenreinigungOrte";
 import dachrinnenImg from "@/assets/dachrinnenreinigung.jpeg";
 import dachrinnenDetailImg from "@/assets/dachrinnen-reinigung-detail.jpg";
 import dachrinneVorherImg from "@/assets/dachrinne-vorher.jpg";
