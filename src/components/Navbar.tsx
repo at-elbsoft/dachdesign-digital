@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
+import WhatsAppIcon from "./WhatsAppIcon";
 import logo from "@/assets/logo.webp";
 
 const NAV_ITEMS = [
