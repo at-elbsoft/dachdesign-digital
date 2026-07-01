@@ -56,6 +56,20 @@ export default function Kontakt() {
                       <p className="font-semibold group-hover:text-accent transition-colors">kontakt@ldbauklempnerei.de</p>
                     </div>
                   </a>
+                  <a
+                    href="https://wa.me/4917613514385?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Dachrinnenreinigung"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex gap-3 group"
+                  >
+                    <div className="w-10 h-10 rounded-lg bg-[#25D366]/10 flex items-center justify-center shrink-0">
+                      <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-muted-foreground">WhatsApp</p>
+                      <p className="font-semibold group-hover:text-[#25D366] transition-colors">0176 1351 4385</p>
+                    </div>
+                  </a>
                   <div className="flex gap-3">
                     <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
                       <MapPin className="w-5 h-5 text-accent" />
