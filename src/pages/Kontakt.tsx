@@ -3,6 +3,7 @@ import { Phone, Mail, MapPin, Send } from "lucide-react";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import SEOHead from "@/components/SEOHead";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { trackEvent } from "@/lib/analytics";
 
