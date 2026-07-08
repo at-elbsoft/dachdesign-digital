@@ -37,6 +37,10 @@ export function initGlobalClickTracking() {
         trackEvent("phone_call_click", { method: "phone" });
         return;
       }
+      if (href.startsWith("mailto:")) {
+        trackEvent("email_click", { method: "email", link_url: href });
+        return;
+      }
       if (
         href.includes("wa.me") ||
         href.includes("api.whatsapp.com") ||
