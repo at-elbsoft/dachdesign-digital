@@ -7,7 +7,6 @@ import SEOHead from "@/components/SEOHead";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { trackEvent } from "@/lib/analytics";
-import { supabase } from "@/integrations/supabase/client";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Bitte geben Sie Ihren Namen an.").max(200),
@@ -15,6 +14,7 @@ const contactSchema = z.object({
   email: z.string().trim().email("Bitte geben Sie eine gültige E-Mail-Adresse an.").max(320),
   subject: z.string().trim().max(300).optional().or(z.literal("")),
   message: z.string().trim().min(1, "Bitte geben Sie eine Nachricht ein.").max(5000),
+  consent: z.literal(true, { errorMap: () => ({ message: "Bitte stimmen Sie der Datenschutzerklärung zu." }) }),
 });
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
@@ -22,7 +22,7 @@ type FormStatus = "idle" | "submitting" | "success" | "error";
 export default function Kontakt() {
   const { ref, isVisible } = useScrollReveal();
 
-  const initialForm = { name: '', phone: '', email: '', subject: '', message: '' };
+  const initialForm = { name: '', phone: '', email: '', subject: '', message: '', company: '', consent: false };
   const [formData, setFormData] = useState(initialForm);
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -39,25 +39,37 @@ export default function Kontakt() {
     }
 
     setStatus("submitting");
-    const { error } = await supabase.from("contact_submissions").insert({
-      name: parsed.data.name,
-      phone: parsed.data.phone || null,
-      email: parsed.data.email,
-      subject: parsed.data.subject || null,
-      message: parsed.data.message,
-      source_page: typeof window !== "undefined" ? window.location.pathname : null,
-      user_agent: typeof navigator !== "undefined" ? navigator.userAgent : null,
-    });
-
-    if (error) {
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: parsed.data.name,
+          email: parsed.data.email,
+          phone: parsed.data.phone || "",
+          subject: parsed.data.subject || "",
+          message: parsed.data.message,
+          company: formData.company, // honeypot
+        }),
+      });
+      const json = await res.json().catch(() => ({ ok: false }));
+      if (!res.ok || !json.ok) {
+        setStatus("error");
+        setErrorMessage(
+          json.error ||
+            "Senden fehlgeschlagen. Bitte später erneut versuchen oder unter 0176 1351 4385 anrufen."
+        );
+        return;
+      }
+      trackEvent("generate_lead", { form_name: "kontaktformular", value: 1 });
+      setStatus("success");
+      setFormData(initialForm);
+    } catch {
       setStatus("error");
-      setErrorMessage("Ihre Anfrage konnte nicht gesendet werden. Bitte rufen Sie uns an oder versuchen Sie es erneut.");
-      return;
+      setErrorMessage(
+        "Senden fehlgeschlagen. Bitte später erneut versuchen oder unter 0176 1351 4385 anrufen."
+      );
     }
-
-    trackEvent("generate_lead", { form_name: "kontaktformular", value: 1 });
-    setStatus("success");
-    setFormData(initialForm);
   };
 
   return (
@@ -134,6 +146,24 @@ export default function Kontakt() {
             <div className="lg:col-span-3">
               <form onSubmit={handleSubmit} className="bg-card border border-border rounded-xl p-6 md:p-8 shadow-sm">
                 <h2 className="text-xl font-heading font-bold mb-6">Nachricht senden</h2>
+
+                {/* Honeypot - hidden from users, bots may fill it */}
+                <div
+                  aria-hidden="true"
+                  style={{ position: "absolute", left: "-10000px", top: "auto", width: "1px", height: "1px", overflow: "hidden" }}
+                >
+                  <label htmlFor="company">Firma (nicht ausfüllen)</label>
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={formData.company}
+                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                  />
+                </div>
+
                 <div className="grid sm:grid-cols-2 gap-4 mb-4">
                   <div>
                     <label className="block text-xs font-medium text-muted-foreground mb-1.5">Name *</label>
@@ -176,7 +206,7 @@ export default function Kontakt() {
                     />
                   </div>
                 </div>
-                <div className="mb-6">
+                <div className="mb-4">
                   <label className="block text-xs font-medium text-muted-foreground mb-1.5">Nachricht *</label>
                   <textarea
                     required
@@ -186,12 +216,24 @@ export default function Kontakt() {
                     className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 transition-shadow resize-none"
                   />
                 </div>
+                <label className="flex items-start gap-2 mb-6 text-xs text-muted-foreground cursor-pointer">
+                  <input
+                    type="checkbox"
+                    required
+                    checked={formData.consent}
+                    onChange={(e) => setFormData({ ...formData, consent: e.target.checked })}
+                    className="mt-0.5"
+                  />
+                  <span>
+                    Ich habe die <a href="/datenschutz" className="underline hover:text-accent">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage zu. *
+                  </span>
+                </label>
                 {status === "success" && (
                   <div className="flex gap-3 items-start bg-accent/10 border border-accent/30 rounded-lg p-4 mb-4">
                     <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5" />
                     <div className="text-sm">
-                      <p className="font-semibold text-foreground">Vielen Dank – Ihre Anfrage ist bei uns eingegangen.</p>
-                      <p className="text-muted-foreground mt-1">Wir melden uns schnellstmöglich bei Ihnen. Bei Notfällen erreichen Sie uns rund um die Uhr unter <a href="tel:+4917613514385" className="font-semibold text-accent hover:underline">0176 1351 4385</a>.</p>
+                      <p className="font-semibold text-foreground">Vielen Dank – wir melden uns schnellstmöglich bei Ihnen.</p>
+                      <p className="text-muted-foreground mt-1">Bei Notfällen erreichen Sie uns rund um die Uhr unter <a href="tel:+4917613514385" className="font-semibold text-accent hover:underline">0176 1351 4385</a>.</p>
                     </div>
                   </div>
                 )}
@@ -208,7 +250,7 @@ export default function Kontakt() {
                   {status === "submitting" ? (
                     <>
                       <Loader2 className="w-4 h-4 animate-spin" />
-                      Wird gesendet…
+                      Wird gesendet …
                     </>
                   ) : (
                     <>
@@ -217,9 +259,6 @@ export default function Kontakt() {
                     </>
                   )}
                 </button>
-                <p className="text-xs text-muted-foreground mt-3 text-center">
-                  Mit dem Absenden stimmen Sie unserer <a href="/datenschutz" className="underline hover:text-accent">Datenschutzerklärung</a> zu.
-                </p>
               </form>
             </div>
           </div>
