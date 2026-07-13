@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import UeberUns from "./pages/UeberUns";
 import Leistungen from "./pages/Leistungen";
 import Flachdach from "./pages/Flachdach";
+import FlachdachOrt from "./pages/FlachdachOrt";
 import Steildach from "./pages/Steildach";
 
 import ReparaturUndErhaltung from "./pages/ReparaturUndErhaltung";
@@ -61,6 +62,7 @@ export function AppRoutes() {
         <Route path="/ueber-uns" element={<UeberUns />} />
         <Route path="/leistungen" element={<Leistungen />} />
         <Route path="/flachdach" element={<Flachdach />} />
+        <Route path="/flachdach/:ort" element={<FlachdachOrt />} />
         <Route path="/steildach" element={<Steildach />} />
         <Route path="/reparatur-und-erhaltung" element={<ReparaturUndErhaltung />} />
         <Route path="/dachrinnenreinigung" element={<Dachrinnenreinigung />} />
