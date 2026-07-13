@@ -130,6 +130,9 @@ function FlachdachsanierungSection() {
       </div>
     </section>
   );
+}
+
+
 
 const targetGroups = [
   "Gewerbe-, Industrie- und Logistikhallen",
