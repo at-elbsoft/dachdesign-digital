@@ -316,7 +316,11 @@ export default function Flachdach() {
         </div>
       </section>
 
+      {/* 3b. Flachdachsanierung & -abdichtung (Ads Message-Match: Sanierung) */}
+      <FlachdachsanierungSection />
+
       <section ref={introRef} className="section-padding-lg">
+
         <div className="container-wide">
           <div className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-start mb-16 ${introVisible ? 'animate-fade-up' : 'opacity-0'}`}>
             <div>
