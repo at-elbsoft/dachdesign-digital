@@ -186,13 +186,40 @@ export default function Kontakt() {
                     className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 transition-shadow resize-none"
                   />
                 </div>
+                {status === "success" && (
+                  <div className="flex gap-3 items-start bg-accent/10 border border-accent/30 rounded-lg p-4 mb-4">
+                    <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5" />
+                    <div className="text-sm">
+                      <p className="font-semibold text-foreground">Vielen Dank – Ihre Anfrage ist bei uns eingegangen.</p>
+                      <p className="text-muted-foreground mt-1">Wir melden uns schnellstmöglich bei Ihnen. Bei Notfällen erreichen Sie uns rund um die Uhr unter <a href="tel:+4917613514385" className="font-semibold text-accent hover:underline">0176 1351 4385</a>.</p>
+                    </div>
+                  </div>
+                )}
+                {status === "error" && errorMessage && (
+                  <div className="text-sm text-destructive bg-destructive/10 border border-destructive/30 rounded-lg p-3 mb-4">
+                    {errorMessage}
+                  </div>
+                )}
                 <button
                   type="submit"
-                  className="flex items-center justify-center gap-2 w-full bg-accent text-accent-foreground px-6 py-3 rounded-lg font-semibold text-sm hover:shadow-lg hover:shadow-accent/20 transition-all duration-150 active:scale-[0.97]"
+                  disabled={status === "submitting"}
+                  className="flex items-center justify-center gap-2 w-full bg-accent text-accent-foreground px-6 py-3 rounded-lg font-semibold text-sm hover:shadow-lg hover:shadow-accent/20 transition-all duration-150 active:scale-[0.97] disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  <Send className="w-4 h-4" />
-                  Nachricht absenden
+                  {status === "submitting" ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Wird gesendet…
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      Nachricht absenden
+                    </>
+                  )}
                 </button>
+                <p className="text-xs text-muted-foreground mt-3 text-center">
+                  Mit dem Absenden stimmen Sie unserer <a href="/datenschutz" className="underline hover:text-accent">Datenschutzerklärung</a> zu.
+                </p>
               </form>
             </div>
           </div>
