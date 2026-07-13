@@ -90,6 +90,31 @@ module.exports = async function (context, req) {
     return respond(400, { ok: false, error: "Eingabe zu lang." });
   }
 
+  // 2b) Domain-/Spam-Filter: Wegwerf-Domains ablehnen, MX-Eintrag verlangen
+  const domain = String(email).split("@")[1]?.toLowerCase().trim();
+  if (!domain) {
+    return respond(400, { ok: false, error: "Bitte eine gültige E-Mail-Adresse angeben." });
+  }
+  if (DISPOSABLE_DOMAINS.has(domain)) {
+    return respond(400, {
+      ok: false,
+      error: "Bitte eine dauerhaft erreichbare E-Mail-Adresse verwenden (keine Wegwerf-Adresse).",
+    });
+  }
+  try {
+    const mx = await dns.resolveMx(domain);
+    if (!Array.isArray(mx) || mx.length === 0) {
+      return respond(400, { ok: false, error: "Die E-Mail-Domain ist nicht erreichbar. Bitte E-Mail prüfen." });
+    }
+  } catch (err) {
+    if (err && (err.code === "ENOTFOUND" || err.code === "ENODATA")) {
+      return respond(400, { ok: false, error: "Die E-Mail-Domain ist nicht erreichbar. Bitte E-Mail prüfen." });
+    }
+    // Transienter DNS-Fehler → fail-open, nicht blockieren
+    context.log.warn("MX-Lookup fehlgeschlagen (fail-open):", domain, err && err.code);
+  }
+
+
   // 3) SMTP transport (all-inkl / kasserver)
   const port = Number(process.env.SMTP_PORT || 465);
   const transporter = nodemailer.createTransport({
