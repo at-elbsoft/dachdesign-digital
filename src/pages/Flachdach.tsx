@@ -1,4 +1,5 @@
-import { CheckCircle2, Phone } from "lucide-react";
+import { AlertTriangle, CheckCircle2, Clock, Droplets, MapPin, Phone, ShieldAlert, Wrench, Zap } from "lucide-react";
+import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
@@ -52,7 +53,38 @@ const steps = [
   "Dokumentation, Fotodokumentation und Gewährleistung",
 ];
 
+const speedReasons = [
+  {
+    icon: Zap,
+    title: "Schnelle Rückmeldung",
+    text: "Anfragen beantworten wir in der Regel noch am selben Werktag.",
+  },
+  {
+    icon: MapPin,
+    title: "Kurzfristige Termine",
+    text: "Freie Kapazitäten im Großraum Hamburg / Seevetal – auch bei akuten Schäden.",
+  },
+  {
+    icon: ShieldAlert,
+    title: "24h-Notdienst",
+    text: "Bei akutem Wassereintritt sind wir rund um die Uhr erreichbar.",
+  },
+  {
+    icon: Wrench,
+    title: "Regionaler Meisterbetrieb",
+    text: "Kurze Wege aus Seevetal – wir sind schnell vor Ort statt tagelang unterwegs.",
+  },
+];
+
 const faqs = [
+  {
+    question: "Wie schnell können Sie bei einem undichten Flachdach kommen?",
+    answer: "Bei akutem Wassereintritt sind wir über unseren 24h-Notdienst rund um die Uhr erreichbar und sichern den Schaden schnellstmöglich ab. Auch für nicht akute Anfragen im Großraum Hamburg und Seevetal vergeben wir kurzfristige Termine – in der Regel deutlich schneller als der Marktdurchschnitt.",
+  },
+  {
+    question: "Können Sie mein Flachdach abdichten, ohne es komplett abzureißen?",
+    answer: "In den meisten Fällen ja. Wir prüfen die Restsubstanz mit einer Feuchtemessung und einer Bestandsaufnahme und dichten anschließend gezielt ab – oft reicht eine Sanierung im Bestand statt eines teuren Komplettabrisses. Das spart Zeit, Geld und Material.",
+  },
   {
     question: "Welche Abdichtung ist für mein Flachdach die richtige?",
     answer: "Wir arbeiten je nach Anforderung mit Bitumen-Schweißbahnen, EPDM-Folie oder Kunststoff-Dachbahnen (FPO/PVC). Die Wahl richtet sich nach Untergrund, Nutzung (begehbar, begrünt) und Budget – wir beraten Sie herstellerunabhängig.",
@@ -60,10 +92,6 @@ const faqs = [
   {
     question: "Wie lange hält ein modernes Flachdach?",
     answer: "Bei fachgerechter Ausführung und regelmäßiger Wartung erreichen moderne Abdichtungssysteme 25 bis 40 Jahre. Ein jährlicher Dach-Check verlängert die Lebensdauer deutlich.",
-  },
-  {
-    question: "Kann mein bestehendes Flachdach saniert statt abgerissen werden?",
-    answer: "In vielen Fällen ja. Wir prüfen die Restsubstanz mit einer Feuchtemessung und einer Bestandsaufnahme und schlagen die wirtschaftlichste Lösung vor – Sanierung im Bestand ist meist deutlich günstiger als ein Komplettabriss.",
   },
   {
     question: "Ist eine Dachbegrünung auf jedem Flachdach möglich?",
@@ -83,9 +111,43 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "serviceType": "Flachdach",
-  "provider": { "@type": "RoofingContractor", "name": "Lehmann Dächer & Bauklempnerei GmbH" },
-  "areaServed": { "@type": "City", "name": "Hamburg" },
-  "description": "Flachdach-Experten in Hamburg: Abdichtung, Dämmung, Begrünung und Sanierung.",
+  "provider": {
+    "@type": "RoofingContractor",
+    "name": "Lehmann Dächer & Bauklempnerei GmbH",
+    "telephone": "+4917613514385",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Graubergen 19",
+      "postalCode": "21218",
+      "addressLocality": "Seevetal",
+      "addressCountry": "DE",
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "06:00",
+        "closes": "18:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "description": "24h-Notdienst bei Wassereintritt und akuten Dachschäden",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "00:00",
+        "closes": "23:59",
+      },
+    ],
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Hamburg" },
+    { "@type": "City", "name": "Seevetal" },
+    { "@type": "City", "name": "Buchholz in der Nordheide" },
+    { "@type": "City", "name": "Buxtehude" },
+    { "@type": "City", "name": "Winsen (Luhe)" },
+    { "@type": "City", "name": "Neu Wulmstorf" },
+    { "@type": "City", "name": "Tostedt" },
+  ],
+  "description": "Flachdach-Experten in Hamburg: Abdichtung, Reparatur, Sanierung und 24h-Notdienst bei Wassereintritt.",
 };
 
 const faqSchema = {
@@ -103,21 +165,157 @@ export default function Flachdach() {
   const { ref: targetRef, isVisible: targetVisible } = useScrollReveal();
   const { ref: stepsRef, isVisible: stepsVisible } = useScrollReveal();
   const { ref: faqRef, isVisible: faqVisible } = useScrollReveal();
+  const { ref: emergencyRef, isVisible: emergencyVisible } = useScrollReveal();
+  const { ref: speedRef, isVisible: speedVisible } = useScrollReveal();
 
   return (
     <Layout>
       <SEOHead
-        title="Flachdach Hamburg | Abdichtung & Sanierung – Lehmann Dächer"
-        description="Flachdach-Experten in Hamburg: Abdichtung, Dämmung, Begrünung und Sanierung. Langlebig, energieeffizient und pflegeleicht. Jetzt beraten lassen!"
+        title="Flachdach Hamburg – Abdichtung, Reparatur & 24h-Notdienst | Lehmann Dächer"
+        description="Flachdach undicht? Schnelle Abdichtung & Reparatur im Großraum Hamburg. Kurzfristige Termine, 24h-Notdienst, Sanierung statt Komplettabriss. Jetzt anrufen!"
         path="/flachdach"
         schema={{ "@context": "https://schema.org", "@graph": [serviceSchema, faqSchema] }}
       />
       <PageHero
         title="Flachdach"
-        subtitle="Langlebige, energieeffiziente und pflegeleichte Flachdachlösungen für Gewerbe und Wohnbau."
+        subtitle="Schnelle Flachdachabdichtung & -reparatur im Großraum Hamburg. 24h-Notdienst bei Wassereintritt."
         breadcrumb="Leistungen / Flachdach"
         image={flatRoofImg}
       />
+
+      {/* 1. Speed-/Notdienst-Hero */}
+      <section className="section-padding bg-gradient-to-br from-accent/10 via-background to-accent/5 border-b border-accent/20">
+        <div className="container-wide">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 bg-accent/15 text-accent px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-5">
+              <AlertTriangle className="w-4 h-4" />
+              24h-Notdienst · Kurzfristige Termine
+            </div>
+            <h1 className="text-3xl md:text-5xl font-heading font-bold leading-tight mb-4">
+              Flachdach undicht? Wir kommen kurzfristig – auch wenn andere ausgebucht sind.
+            </h1>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-2xl mx-auto">
+              Schnelle Flachdachabdichtung & -reparatur im Großraum Hamburg. 24h-Notdienst bei Wassereintritt. Fachbetrieb aus Seevetal.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center mb-6">
+              <a
+                href="tel:+4917613514385"
+                className="inline-flex items-center justify-center gap-2 bg-accent text-accent-foreground px-7 py-4 rounded-lg font-bold text-base hover:shadow-xl hover:shadow-accent/30 transition-all duration-150 active:scale-[0.97]"
+              >
+                <Phone className="w-5 h-5" />
+                Jetzt anrufen: 0176 1351 4385
+              </a>
+              <Link
+                to="/kontakt"
+                className="inline-flex items-center justify-center gap-2 bg-background border-2 border-accent text-accent px-7 py-4 rounded-lg font-semibold text-base hover:bg-accent/10 transition-all duration-150 active:scale-[0.97]"
+              >
+                Kostenloses Angebot anfordern
+              </Link>
+            </div>
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+              {["Kurzfristige Termine", "24h-Notdienst", "Schnell vor Ort"].map((badge) => (
+                <span
+                  key={badge}
+                  className="inline-flex items-center gap-1.5 bg-background border border-border rounded-full px-3 py-1.5 text-xs font-medium shadow-sm"
+                >
+                  <CheckCircle2 className="w-3.5 h-3.5 text-accent" />
+                  {badge}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Undicht / Reparatur */}
+      <section ref={emergencyRef} className="section-padding-lg">
+        <div className="container-wide">
+          <div className={`grid lg:grid-cols-2 gap-12 items-center ${emergencyVisible ? 'animate-fade-up' : 'opacity-0'}`}>
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3">Notfall & Reparatur</p>
+              <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4 leading-tight">
+                Flachdach undicht oder Wasserschaden? Schnelle Hilfe aus einer Hand
+              </h2>
+              <div className="space-y-3 text-muted-foreground leading-relaxed mb-6">
+                <p>
+                  Bei Undichtigkeiten zählt jede Stunde. Wir kommen kurzfristig, sichern den Schaden sofort ab und verhindern Folgeschäden an Dämmung, Decke und Innenausbau.
+                </p>
+                <p>
+                  <strong className="text-foreground">Leckortung UND fachgerechte Abdichtung aus einer Hand</strong> – Sie müssen nicht erst einen Leckorter suchen und dann einen Handwerker, der ohnehin ausgebucht ist. Wir übernehmen beides im selben Zug.
+                </p>
+                <p>
+                  Häufig ist eine gezielte Sanierung möglich – ohne teuren Komplettabriss. Vom Garagendach bis zur Gewerbehalle.
+                </p>
+              </div>
+              <ul className="space-y-3 mb-8">
+                {[
+                  { icon: Droplets, text: "Sofortige Schadensbegrenzung bei Wassereintritt" },
+                  { icon: Wrench, text: "Leckortung + dauerhafte Abdichtung im selben Zug" },
+                  { icon: Clock, text: "Kurzfristige Termine, auch bei hoher Auslastung" },
+                  { icon: ShieldAlert, text: "24h-Notdienst bei akutem Wasserschaden" },
+                ].map(({ icon: Icon, text }) => (
+                  <li key={text} className="flex gap-3 items-start">
+                    <div className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
+                      <Icon className="w-4 h-4 text-accent" />
+                    </div>
+                    <span className="text-sm font-medium pt-1.5">{text}</span>
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="tel:+4917613514385"
+                className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-6 py-3 rounded-lg font-semibold text-sm hover:shadow-lg hover:shadow-accent/20 transition-all duration-150 active:scale-[0.97]"
+              >
+                <Phone className="w-4 h-4" />
+                Jetzt Notfall melden
+              </a>
+            </div>
+            <div className="relative">
+              <img
+                src={flatRoofImg}
+                alt="Notfall-Reparatur eines undichten Flachdachs in Hamburg"
+                width={800}
+                height={600}
+                loading="lazy"
+                className="rounded-xl shadow-lg w-full object-cover aspect-[4/3]"
+              />
+              <div className="absolute -bottom-4 -right-4 bg-accent text-accent-foreground rounded-xl px-5 py-3 shadow-xl">
+                <p className="text-xs font-semibold uppercase tracking-wider opacity-90">Notdienst</p>
+                <p className="font-heading font-bold text-lg">24 / 7 erreichbar</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Warum wir schnell sind */}
+      <section ref={speedRef} className="section-padding-lg bg-muted/30">
+        <div className="container-wide">
+          <div className={`${speedVisible ? 'animate-fade-up' : 'opacity-0'}`}>
+            <div className="max-w-2xl mx-auto text-center mb-10">
+              <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3">Warum wir schnell sind</p>
+              <h2 className="text-2xl md:text-3xl font-heading font-bold leading-tight mb-3">
+                Regional, erreichbar, verfügbar
+              </h2>
+              <p className="text-muted-foreground leading-relaxed">
+                Als Meisterbetrieb aus Seevetal sind wir in Hamburg und Umgebung schnell vor Ort. Mo–Fr 06:00–18:00 Uhr regulär – und bei akutem Wasserschaden über unseren 24h-Notdienst rund um die Uhr.
+              </p>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {speedReasons.map(({ icon: Icon, title, text }) => (
+                <div key={title} className="bg-background rounded-xl p-6 border border-border shadow-sm">
+                  <div className="w-11 h-11 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
+                    <Icon className="w-5 h-5 text-accent" />
+                  </div>
+                  <h3 className="font-heading font-semibold text-base mb-2">{title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section ref={introRef} className="section-padding-lg">
         <div className="container-wide">
           <div className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-start mb-16 ${introVisible ? 'animate-fade-up' : 'opacity-0'}`}>
