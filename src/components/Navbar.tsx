@@ -102,23 +102,6 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <a
-            href="tel:+4917613514385"
-            aria-label="Jetzt anrufen 0176 1351 4385"
-            className="flex items-center gap-2 bg-accent text-accent-foreground px-3 md:px-5 py-2 md:py-2.5 rounded-lg text-sm font-semibold transition-all duration-150 hover:shadow-md hover:shadow-accent/20 active:scale-[0.97]"
-          >
-            <Phone className="w-4 h-4" />
-            <span className="hidden md:inline">0176 1351 4385</span>
-          </a>
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="WhatsApp Chat öffnen"
-            className="flex items-center justify-center w-9 h-9 rounded-lg bg-[#25D366] text-white transition-all duration-150 hover:shadow-md hover:scale-105 active:scale-95"
-          >
-            <WhatsAppIcon className="w-4 h-4" />
-          </a>
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="lg:hidden p-2 rounded-md text-foreground hover:bg-muted active:scale-95 transition-all duration-150"
