@@ -104,17 +104,18 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           <a
             href="tel:+4917613514385"
-            className="hidden md:flex items-center gap-2 bg-accent text-accent-foreground px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-150 hover:shadow-md hover:shadow-accent/20 active:scale-[0.97]"
+            aria-label="Jetzt anrufen 0176 1351 4385"
+            className="flex items-center gap-2 bg-accent text-accent-foreground px-3 md:px-5 py-2 md:py-2.5 rounded-lg text-sm font-semibold transition-all duration-150 hover:shadow-md hover:shadow-accent/20 active:scale-[0.97]"
           >
             <Phone className="w-4 h-4" />
-            0176 1351 4385
+            <span className="hidden md:inline">0176 1351 4385</span>
           </a>
           <a
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="WhatsApp Chat öffnen"
-            className="hidden md:flex items-center justify-center w-9 h-9 rounded-lg bg-[#25D366] text-white transition-all duration-150 hover:shadow-md hover:scale-105 active:scale-95"
+            className="flex items-center justify-center w-9 h-9 rounded-lg bg-[#25D366] text-white transition-all duration-150 hover:shadow-md hover:scale-105 active:scale-95"
           >
             <WhatsAppIcon className="w-4 h-4" />
           </a>
