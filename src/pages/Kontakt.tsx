@@ -1,21 +1,63 @@
 import { useState } from "react";
-import { Phone, Mail, MapPin, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Send, CheckCircle2, Loader2 } from "lucide-react";
+import { z } from "zod";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import SEOHead from "@/components/SEOHead";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { trackEvent } from "@/lib/analytics";
+import { supabase } from "@/integrations/supabase/client";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Bitte geben Sie Ihren Namen an.").max(200),
+  phone: z.string().trim().max(50).optional().or(z.literal("")),
+  email: z.string().trim().email("Bitte geben Sie eine gültige E-Mail-Adresse an.").max(320),
+  subject: z.string().trim().max(300).optional().or(z.literal("")),
+  message: z.string().trim().min(1, "Bitte geben Sie eine Nachricht ein.").max(5000),
+});
+
+type FormStatus = "idle" | "submitting" | "success" | "error";
 
 export default function Kontakt() {
   const { ref, isVisible } = useScrollReveal();
 
-  const [formData, setFormData] = useState({ name: '', phone: '', email: '', subject: '', message: '' });
+  const initialForm = { name: '', phone: '', email: '', subject: '', message: '' };
+  const [formData, setFormData] = useState(initialForm);
+  const [status, setStatus] = useState<FormStatus>("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    trackEvent('generate_lead', { form_name: 'kontaktformular', value: 1 });
-    window.location.href = `mailto:kontakt@ldbauklempnerei.de?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nTelefon: ${formData.phone}\nE-Mail: ${formData.email}\n\n${formData.message}`)}`;
+    setErrorMessage("");
+
+    const parsed = contactSchema.safeParse(formData);
+    if (!parsed.success) {
+      setStatus("error");
+      setErrorMessage(parsed.error.issues[0]?.message ?? "Bitte prüfen Sie Ihre Eingaben.");
+      return;
+    }
+
+    setStatus("submitting");
+    const { error } = await supabase.from("contact_submissions").insert({
+      name: parsed.data.name,
+      phone: parsed.data.phone || null,
+      email: parsed.data.email,
+      subject: parsed.data.subject || null,
+      message: parsed.data.message,
+      source_page: typeof window !== "undefined" ? window.location.pathname : null,
+      user_agent: typeof navigator !== "undefined" ? navigator.userAgent : null,
+    });
+
+    if (error) {
+      setStatus("error");
+      setErrorMessage("Ihre Anfrage konnte nicht gesendet werden. Bitte rufen Sie uns an oder versuchen Sie es erneut.");
+      return;
+    }
+
+    trackEvent("generate_lead", { form_name: "kontaktformular", value: 1 });
+    setStatus("success");
+    setFormData(initialForm);
   };
 
   return (
@@ -144,13 +186,40 @@ export default function Kontakt() {
                     className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 transition-shadow resize-none"
                   />
                 </div>
+                {status === "success" && (
+                  <div className="flex gap-3 items-start bg-accent/10 border border-accent/30 rounded-lg p-4 mb-4">
+                    <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5" />
+                    <div className="text-sm">
+                      <p className="font-semibold text-foreground">Vielen Dank – Ihre Anfrage ist bei uns eingegangen.</p>
+                      <p className="text-muted-foreground mt-1">Wir melden uns schnellstmöglich bei Ihnen. Bei Notfällen erreichen Sie uns rund um die Uhr unter <a href="tel:+4917613514385" className="font-semibold text-accent hover:underline">0176 1351 4385</a>.</p>
+                    </div>
+                  </div>
+                )}
+                {status === "error" && errorMessage && (
+                  <div className="text-sm text-destructive bg-destructive/10 border border-destructive/30 rounded-lg p-3 mb-4">
+                    {errorMessage}
+                  </div>
+                )}
                 <button
                   type="submit"
-                  className="flex items-center justify-center gap-2 w-full bg-accent text-accent-foreground px-6 py-3 rounded-lg font-semibold text-sm hover:shadow-lg hover:shadow-accent/20 transition-all duration-150 active:scale-[0.97]"
+                  disabled={status === "submitting"}
+                  className="flex items-center justify-center gap-2 w-full bg-accent text-accent-foreground px-6 py-3 rounded-lg font-semibold text-sm hover:shadow-lg hover:shadow-accent/20 transition-all duration-150 active:scale-[0.97] disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  <Send className="w-4 h-4" />
-                  Nachricht absenden
+                  {status === "submitting" ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Wird gesendet…
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      Nachricht absenden
+                    </>
+                  )}
                 </button>
+                <p className="text-xs text-muted-foreground mt-3 text-center">
+                  Mit dem Absenden stimmen Sie unserer <a href="/datenschutz" className="underline hover:text-accent">Datenschutzerklärung</a> zu.
+                </p>
               </form>
             </div>
           </div>
