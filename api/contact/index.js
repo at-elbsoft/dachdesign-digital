@@ -1,4 +1,68 @@
 const nodemailer = require("nodemailer");
+const dns = require("dns").promises;
+
+// Bekannte Wegwerf-/Temp-Mail-Domains (lowercase). Liste bei Bedarf erweitern.
+const DISPOSABLE_DOMAINS = new Set([
+  "mailinator.com",
+  "guerrillamail.com",
+  "guerrillamail.net",
+  "guerrillamail.org",
+  "guerrillamail.biz",
+  "guerrillamail.de",
+  "guerrillamailblock.com",
+  "sharklasers.com",
+  "grr.la",
+  "10minutemail.com",
+  "10minutemail.net",
+  "10minutemail.org",
+  "tempmail.com",
+  "temp-mail.org",
+  "temp-mail.io",
+  "tempmailo.com",
+  "tempr.email",
+  "yopmail.com",
+  "yopmail.net",
+  "yopmail.fr",
+  "trashmail.com",
+  "trashmail.de",
+  "trashmail.net",
+  "trashmail.io",
+  "wegwerfmail.de",
+  "wegwerfmail.net",
+  "wegwerfmail.org",
+  "wegwerfemail.de",
+  "maildrop.cc",
+  "getnada.com",
+  "nada.email",
+  "mohmal.com",
+  "fakeinbox.com",
+  "discard.email",
+  "discardmail.com",
+  "mailsac.com",
+  "moakt.com",
+  "spambog.com",
+  "spambog.de",
+  "spambog.ru",
+  "dispostable.com",
+  "throwawaymail.com",
+  "mytemp.email",
+  "mailnesia.com",
+  "mailcatch.com",
+  "mintemail.com",
+  "einrot.com",
+  "spam4.me",
+  "byom.de",
+  "emailondeck.com",
+  "inboxbear.com",
+  "harakirimail.com",
+  "mail-temp.com",
+  "mail-temporaire.fr",
+  "tmpmail.org",
+  "tmpmail.net",
+  "tmpeml.com",
+  "burnermail.io",
+  "anonaddy.me",
+]);
 
 module.exports = async function (context, req) {
   const respond = (status, body) => {
@@ -25,6 +89,31 @@ module.exports = async function (context, req) {
   if ([name, email, phone, subject, message].some((v) => v && String(v).length > 5000)) {
     return respond(400, { ok: false, error: "Eingabe zu lang." });
   }
+
+  // 2b) Domain-/Spam-Filter: Wegwerf-Domains ablehnen, MX-Eintrag verlangen
+  const domain = String(email).split("@")[1]?.toLowerCase().trim();
+  if (!domain) {
+    return respond(400, { ok: false, error: "Bitte eine gültige E-Mail-Adresse angeben." });
+  }
+  if (DISPOSABLE_DOMAINS.has(domain)) {
+    return respond(400, {
+      ok: false,
+      error: "Bitte eine dauerhaft erreichbare E-Mail-Adresse verwenden (keine Wegwerf-Adresse).",
+    });
+  }
+  try {
+    const mx = await dns.resolveMx(domain);
+    if (!Array.isArray(mx) || mx.length === 0) {
+      return respond(400, { ok: false, error: "Die E-Mail-Domain ist nicht erreichbar. Bitte E-Mail prüfen." });
+    }
+  } catch (err) {
+    if (err && (err.code === "ENOTFOUND" || err.code === "ENODATA")) {
+      return respond(400, { ok: false, error: "Die E-Mail-Domain ist nicht erreichbar. Bitte E-Mail prüfen." });
+    }
+    // Transienter DNS-Fehler → fail-open, nicht blockieren
+    context.log.warn("MX-Lookup fehlgeschlagen (fail-open):", domain, err && err.code);
+  }
+
 
   // 3) SMTP transport (all-inkl / kasserver)
   const port = Number(process.env.SMTP_PORT || 465);
