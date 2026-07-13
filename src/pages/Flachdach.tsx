@@ -171,8 +171,8 @@ export default function Flachdach() {
   return (
     <Layout>
       <SEOHead
-        title="Flachdach Hamburg – Abdichtung, Reparatur & 24h-Notdienst | Lehmann Dächer"
-        description="Flachdach undicht? Schnelle Abdichtung & Reparatur im Großraum Hamburg. Kurzfristige Termine, 24h-Notdienst, Sanierung statt Komplettabriss. Jetzt anrufen!"
+        title="Flachdachsanierung Hamburg – Abdichtung, Reparatur & 24h-Notdienst | Lehmann Dächer"
+        description="Flachdachsanierung & Flachdachabdichtung im Großraum Hamburg: Reparatur, Leckortung, Bitumen- & Kunststoffabdichtungen, 24h-Notdienst. Meisterbetrieb aus Seevetal – jetzt kostenlos beraten lassen!"
         path="/flachdach"
         schema={{ "@context": "https://schema.org", "@graph": [serviceSchema, faqSchema] }}
       />
