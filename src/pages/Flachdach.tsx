@@ -37,6 +37,100 @@ function ServiceDetail({ title, text, benefits }: ServiceDetailProps) {
   );
 }
 
+const sanierungLeistungen = [
+  { icon: Wrench, title: "Flachdachsanierung", text: "Grundlegende Erneuerung Ihres Flachdachs – wirtschaftlich statt kompletter Neuaufbau." },
+  { icon: Shield, title: "Flachdachabdichtung", text: "Dauerhaft dichte Systeme nach Fachregel – Bitumen, EPDM, FPO/PVC." },
+  { icon: Layers, title: "Flachdachreparaturen", text: "Gezielte Reparatur einzelner Schadstellen ohne unnötigen Materialtausch." },
+  { icon: Search, title: "Leckageortung", text: "Präzise Ortung von Undichtigkeiten – Leckortung und Abdichtung aus einer Hand." },
+  { icon: Droplets, title: "Bitumenabdichtungen", text: "Bewährte Schweißbahnen für langlebige, robuste Flachdächer." },
+  { icon: Sparkles, title: "Kunststoffabdichtungen", text: "Moderne FPO-/PVC-Bahnen – schlank, wurzelfest und wirtschaftlich." },
+  { icon: Clock, title: "Dachwartung", text: "Regelmäßige Kontrolle verlängert die Lebensdauer und beugt Schäden vor." },
+  { icon: AlertTriangle, title: "Notabdichtungen", text: "Sofortmaßnahmen bei Wassereintritt – rund um die Uhr über den 24h-Notdienst." },
+];
+
+const sanierungVorteile = [
+  "Über 20 Jahre Erfahrung",
+  "Schnelle Terminvergabe",
+  "Meisterbetrieb aus Seevetal bei Hamburg",
+  "Hochwertige Materialien namhafter Hersteller",
+  "Faire und transparente Angebote",
+  "24-Stunden-Notdienst bei akuten Schäden",
+];
+
+function FlachdachsanierungSection() {
+  const { ref, isVisible } = useScrollReveal();
+  return (
+    <section id="sanierung" ref={ref} className="section-padding-lg scroll-mt-24">
+      <div className="container-wide">
+        <div className={`max-w-3xl mx-auto text-center mb-12 ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
+          <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3">Sanierung & Abdichtung</p>
+          <h2 className="text-2xl md:text-4xl font-heading font-bold leading-tight mb-4">
+            Flachdachsanierung & Flachdachabdichtung in Hamburg
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-3">
+            Ein undichtes oder in die Jahre gekommenes Flachdach führt schnell zu Feuchtigkeitsschäden und hohen Folgekosten. Mit professioneller Flachdachsanierung wird Ihr Dach wieder dauerhaft dicht, sicher und langlebig.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Ob kleine Undichtigkeit, beschädigte Abdichtung oder komplette Erneuerung – wir analysieren den Zustand Ihres Flachdachs und empfehlen die wirtschaftlich sinnvollste Lösung. Hochwertige Materialien, fachgerechte Ausführung nach aktuellem Stand der Technik.
+          </p>
+        </div>
+
+        <h3 className="font-heading font-semibold text-xl md:text-2xl text-center mb-8">Unsere Leistungen</h3>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
+          {sanierungLeistungen.map(({ icon: Icon, title, text }) => (
+            <div key={title} className="bg-background rounded-xl p-6 border border-border shadow-sm hover:shadow-md hover:border-accent/40 transition-all duration-150">
+              <div className="w-11 h-11 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
+                <Icon className="w-5 h-5 text-accent" />
+              </div>
+              <h4 className="font-heading font-semibold text-base mb-2">{title}</h4>
+              <p className="text-sm text-muted-foreground leading-relaxed">{text}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center bg-muted/40 rounded-2xl p-8 md:p-12 border border-border">
+          <div>
+            <div className="inline-flex items-center gap-2 bg-accent/15 text-accent px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-4">
+              <Award className="w-3.5 h-3.5" />
+              Warum Lehmann Dächer?
+            </div>
+            <h3 className="font-heading font-bold text-2xl md:text-3xl leading-tight mb-6">
+              Ihr Meisterbetrieb für die Flachdachsanierung in Hamburg
+            </h3>
+            <ul className="space-y-3">
+              {sanierungVorteile.map((v) => (
+                <li key={v} className="flex gap-3 items-start">
+                  <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5" />
+                  <span className="text-sm md:text-base font-medium">{v}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="bg-background rounded-xl p-6 md:p-8 border border-border shadow-sm">
+            <p className="text-sm md:text-base text-muted-foreground leading-relaxed mb-6">
+              Lassen Sie Ihr Flachdach frühzeitig prüfen und vermeiden Sie teure Folgeschäden. Wir beraten Sie kostenlos und unverbindlich.
+            </p>
+            <div className="flex flex-col gap-3">
+              <Link
+                to="/kontakt"
+                className="inline-flex items-center justify-center gap-2 bg-accent text-accent-foreground px-6 py-3.5 rounded-lg font-bold text-base hover:shadow-lg hover:shadow-accent/25 transition-all duration-150 active:scale-[0.97]"
+              >
+                Kostenloses Angebot anfordern
+              </Link>
+              <a
+                href="tel:+4917613514385"
+                className="inline-flex items-center justify-center gap-2 bg-background border-2 border-accent text-accent px-6 py-3.5 rounded-lg font-semibold text-base hover:bg-accent/10 transition-all duration-150 active:scale-[0.97]"
+              >
+                <Phone className="w-5 h-5" />
+                Jetzt anrufen: 0176 1351 4385
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+
 const targetGroups = [
   "Gewerbe-, Industrie- und Logistikhallen",
   "Bürogebäude und Verwaltungsbauten",
