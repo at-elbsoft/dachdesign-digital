@@ -1,21 +1,63 @@
 import { useState } from "react";
-import { Phone, Mail, MapPin, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Send, CheckCircle2, Loader2 } from "lucide-react";
+import { z } from "zod";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import SEOHead from "@/components/SEOHead";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { trackEvent } from "@/lib/analytics";
+import { supabase } from "@/integrations/supabase/client";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Bitte geben Sie Ihren Namen an.").max(200),
+  phone: z.string().trim().max(50).optional().or(z.literal("")),
+  email: z.string().trim().email("Bitte geben Sie eine gültige E-Mail-Adresse an.").max(320),
+  subject: z.string().trim().max(300).optional().or(z.literal("")),
+  message: z.string().trim().min(1, "Bitte geben Sie eine Nachricht ein.").max(5000),
+});
+
+type FormStatus = "idle" | "submitting" | "success" | "error";
 
 export default function Kontakt() {
   const { ref, isVisible } = useScrollReveal();
 
-  const [formData, setFormData] = useState({ name: '', phone: '', email: '', subject: '', message: '' });
+  const initialForm = { name: '', phone: '', email: '', subject: '', message: '' };
+  const [formData, setFormData] = useState(initialForm);
+  const [status, setStatus] = useState<FormStatus>("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    trackEvent('generate_lead', { form_name: 'kontaktformular', value: 1 });
-    window.location.href = `mailto:kontakt@ldbauklempnerei.de?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nTelefon: ${formData.phone}\nE-Mail: ${formData.email}\n\n${formData.message}`)}`;
+    setErrorMessage("");
+
+    const parsed = contactSchema.safeParse(formData);
+    if (!parsed.success) {
+      setStatus("error");
+      setErrorMessage(parsed.error.issues[0]?.message ?? "Bitte prüfen Sie Ihre Eingaben.");
+      return;
+    }
+
+    setStatus("submitting");
+    const { error } = await supabase.from("contact_submissions").insert({
+      name: parsed.data.name,
+      phone: parsed.data.phone || null,
+      email: parsed.data.email,
+      subject: parsed.data.subject || null,
+      message: parsed.data.message,
+      source_page: typeof window !== "undefined" ? window.location.pathname : null,
+      user_agent: typeof navigator !== "undefined" ? navigator.userAgent : null,
+    });
+
+    if (error) {
+      setStatus("error");
+      setErrorMessage("Ihre Anfrage konnte nicht gesendet werden. Bitte rufen Sie uns an oder versuchen Sie es erneut.");
+      return;
+    }
+
+    trackEvent("generate_lead", { form_name: "kontaktformular", value: 1 });
+    setStatus("success");
+    setFormData(initialForm);
   };
 
   return (
