@@ -1,4 +1,4 @@
-import { AlertTriangle, CheckCircle2, Clock, Droplets, MapPin, Phone, ShieldAlert, Wrench, Zap } from "lucide-react";
+import { AlertTriangle, Award, CheckCircle2, Clock, Droplets, Layers, MapPin, Phone, Search, Shield, ShieldAlert, Sparkles, Wrench, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
