@@ -354,6 +354,59 @@ export default function Flachdach() {
         </div>
       </section>
 
+      {/* Kosten-Orientierung */}
+      <section id="kosten" className="section-padding bg-muted/30 scroll-mt-24">
+        <div className="container-wide">
+          <div className="max-w-3xl mx-auto">
+            <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3 text-center">Kosten & Orientierung</p>
+            <h2 className="text-2xl md:text-3xl font-heading font-bold leading-tight mb-4 text-center">
+              Was kostet eine Flachdachsanierung?
+            </h2>
+            <p className="text-muted-foreground leading-relaxed text-center mb-8">
+              Jedes Flachdach ist anders – deshalb gibt es keinen pauschalen Preis. Zur groben Orientierung:
+            </p>
+
+            <div className="grid sm:grid-cols-2 gap-4 mb-8">
+              {[
+                { label: "Abdichtung", value: "ab ca. 40 €/m²*" },
+                { label: "Komplettsanierung inkl. Dämmung", value: "ca. 80–120 €/m²*" },
+                { label: "Leckortung", value: "ab ca. 300 €*" },
+                { label: "Reparatur einzelner Schadstellen", value: "nach Aufwand" },
+              ].map((item) => (
+                <div key={item.label} className="bg-background rounded-xl border border-border p-5 shadow-sm">
+                  <div className="flex items-start gap-3">
+                    <BadgeEuro className="w-5 h-5 text-accent shrink-0 mt-0.5" aria-hidden="true" />
+                    <div>
+                      <p className="font-semibold text-sm md:text-base">{item.label}</p>
+                      <p className="text-sm text-muted-foreground">{item.value}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="bg-accent/10 border border-accent/30 rounded-xl p-5 md:p-6 mb-6">
+              <p className="text-base md:text-lg font-heading font-semibold leading-snug">
+                Oft ist eine gezielte Sanierung möglich – ohne teuren Komplettabriss. Das spart Abriss, Gerüst und Entsorgung und senkt die Kosten deutlich.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-center mb-3">
+              <a
+                href="#kurzformular"
+                className="inline-flex items-center justify-center gap-2 bg-accent text-accent-foreground px-6 py-3.5 rounded-lg font-bold text-base hover:shadow-lg hover:shadow-accent/25 transition-all duration-150 active:scale-[0.97]"
+              >
+                Kostenlose Dach-Inspektion – Festpreis nach Besichtigung
+              </a>
+            </div>
+            <p className="text-xs text-muted-foreground text-center">
+              * Unverbindliche Orientierung, kein Festpreis. Genauer Preis nach Besichtigung.
+            </p>
+          </div>
+        </div>
+      </section>
+
+
       {/* 2. Undicht / Reparatur */}
       <section ref={emergencyRef} className="section-padding-lg">
         <div className="container-wide">
