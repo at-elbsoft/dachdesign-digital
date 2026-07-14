@@ -26,6 +26,8 @@ const LINKS = [
 ];
 
 export default function Footer() {
+  const location = useLocation();
+  const whatsappUrl = `${WHATSAPP_BASE}?text=${location.pathname === "/flachdach" ? WHATSAPP_TEXT_FLACHDACH : WHATSAPP_TEXT_DEFAULT}`;
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="container-wide py-16">
@@ -102,7 +104,7 @@ export default function Footer() {
                 Jetzt anrufen
               </a>
               <a
-                href={WHATSAPP_URL}
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp Chat öffnen"

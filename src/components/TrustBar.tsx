@@ -1,10 +1,16 @@
 import { Zap, CalendarClock, Siren, Phone } from "lucide-react";
+import { useLocation } from "react-router-dom";
 import WhatsAppIcon from "./WhatsAppIcon";
 
-const WHATSAPP_URL =
-  "https://wa.me/4917613514385?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Dachrinnenreinigung";
+const WHATSAPP_BASE = "https://wa.me/4917613514385";
+const WHATSAPP_TEXT_DEFAULT =
+  "Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Dachrinnenreinigung";
+const WHATSAPP_TEXT_FLACHDACH =
+  "Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Flachdach-Anfrage";
 
 export default function TrustBar() {
+  const location = useLocation();
+  const whatsappUrl = `${WHATSAPP_BASE}?text=${location.pathname === "/flachdach" ? WHATSAPP_TEXT_FLACHDACH : WHATSAPP_TEXT_DEFAULT}`;
   return (
     <div
       className="sticky top-16 md:top-20 z-40 bg-primary text-primary-foreground border-b border-primary/20"
@@ -37,7 +43,7 @@ export default function TrustBar() {
             <span>0176 1351 4385</span>
           </a>
           <a
-            href={WHATSAPP_URL}
+            href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="WhatsApp Chat öffnen"
