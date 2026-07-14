@@ -154,7 +154,7 @@ export default function Navbar() {
                 Jetzt anrufen
               </a>
               <a
-                href={WHATSAPP_URL}
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp Chat öffnen"
