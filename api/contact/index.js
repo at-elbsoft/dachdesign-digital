@@ -81,37 +81,48 @@ module.exports = async function (context, req) {
   // 1) Honeypot: hidden "company" field must be empty
   if (data.company) return respond(200, { ok: true });
 
-  // 2) Validation
+  // 2) Validation: Name Pflicht, mindestens Telefon ODER E-Mail, Nachricht optional
   const isEmail = (e) => typeof e === "string" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
-  if (!name || !message || !isEmail(email)) {
-    return respond(400, { ok: false, error: "Bitte Name, gültige E-Mail und Nachricht ausfüllen." });
+  const hasEmail = typeof email === "string" && email.trim().length > 0;
+  const hasPhone = typeof phone === "string" && phone.trim().length > 0;
+
+  if (!name || String(name).trim().length === 0) {
+    return respond(400, { ok: false, error: "Bitte Name und mindestens Telefon oder E-Mail angeben." });
+  }
+  if (!hasEmail && !hasPhone) {
+    return respond(400, { ok: false, error: "Bitte Name und mindestens Telefon oder E-Mail angeben." });
   }
   if ([name, email, phone, subject, message].some((v) => v && String(v).length > 5000)) {
     return respond(400, { ok: false, error: "Eingabe zu lang." });
   }
 
-  // 2b) Domain-/Spam-Filter: Wegwerf-Domains ablehnen, MX-Eintrag verlangen
-  const domain = String(email).split("@")[1]?.toLowerCase().trim();
-  if (!domain) {
-    return respond(400, { ok: false, error: "Bitte eine gültige E-Mail-Adresse angeben." });
-  }
-  if (DISPOSABLE_DOMAINS.has(domain)) {
-    return respond(400, {
-      ok: false,
-      error: "Bitte eine dauerhaft erreichbare E-Mail-Adresse verwenden (keine Wegwerf-Adresse).",
-    });
-  }
-  try {
-    const mx = await dns.resolveMx(domain);
-    if (!Array.isArray(mx) || mx.length === 0) {
-      return respond(400, { ok: false, error: "Die E-Mail-Domain ist nicht erreichbar. Bitte E-Mail prüfen." });
+  // 2b) E-Mail-Prüfungen nur, wenn E-Mail angegeben
+  if (hasEmail) {
+    if (!isEmail(email)) {
+      return respond(400, { ok: false, error: "Bitte eine gültige E-Mail-Adresse angeben." });
     }
-  } catch (err) {
-    if (err && (err.code === "ENOTFOUND" || err.code === "ENODATA")) {
-      return respond(400, { ok: false, error: "Die E-Mail-Domain ist nicht erreichbar. Bitte E-Mail prüfen." });
+    const domain = String(email).split("@")[1]?.toLowerCase().trim();
+    if (!domain) {
+      return respond(400, { ok: false, error: "Bitte eine gültige E-Mail-Adresse angeben." });
     }
-    // Transienter DNS-Fehler → fail-open, nicht blockieren
-    context.log.warn("MX-Lookup fehlgeschlagen (fail-open):", domain, err && err.code);
+    if (DISPOSABLE_DOMAINS.has(domain)) {
+      return respond(400, {
+        ok: false,
+        error: "Bitte eine dauerhaft erreichbare E-Mail-Adresse verwenden (keine Wegwerf-Adresse).",
+      });
+    }
+    try {
+      const mx = await dns.resolveMx(domain);
+      if (!Array.isArray(mx) || mx.length === 0) {
+        return respond(400, { ok: false, error: "Die E-Mail-Domain ist nicht erreichbar. Bitte E-Mail prüfen." });
+      }
+    } catch (err) {
+      if (err && (err.code === "ENOTFOUND" || err.code === "ENODATA")) {
+        return respond(400, { ok: false, error: "Die E-Mail-Domain ist nicht erreichbar. Bitte E-Mail prüfen." });
+      }
+      // Transienter DNS-Fehler → fail-open, nicht blockieren
+      context.log.warn("MX-Lookup fehlgeschlagen (fail-open):", domain, err && err.code);
+    }
   }
 
 
