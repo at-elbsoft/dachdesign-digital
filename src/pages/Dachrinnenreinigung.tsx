@@ -141,11 +141,12 @@ export default function Dachrinnenreinigung() {
               </p>
               <ul className="space-y-3">
                 {[
-                  "Gründliche Reinigung von Dachrinnen und Fallrohren",
-                  "Entfernung von Laub, Moos und Verschmutzungen",
-                  "Sichtprüfung auf Schäden und Undichtigkeiten",
-                  "Kleine Reparaturen auf Wunsch",
-                  "Zuverlässiger Service für Privat- und Gewerbekunden",
+                  "Reinigung der Dachrinnen",
+                  "Kontrolle & Reinigung der Fallrohre",
+                  "Sichtprüfung des Daches",
+                  "Fachgerechte Entsorgung von Laub und Schmutz",
+                  "Auf Wunsch Foto-Dokumentation",
+                  "Faire Festpreise – keine versteckten Kosten",
                 ].map((b) => (
                   <li key={b} className="flex gap-2 text-sm">
                     <CheckCircle2 className="w-4 h-4 text-accent shrink-0 mt-0.5" />
