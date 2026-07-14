@@ -7,6 +7,7 @@ import SEOHead from "@/components/SEOHead";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { trackEvent } from "@/lib/analytics";
+import { getAttributionPayload } from "@/lib/attribution";
 
 const contactSchema = z
   .object({
@@ -49,6 +50,7 @@ export default function Kontakt() {
 
     setStatus("submitting");
     try {
+      const attribution = await getAttributionPayload();
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -59,6 +61,7 @@ export default function Kontakt() {
           subject: parsed.data.subject || "",
           message: parsed.data.message || "",
           company: formData.company, // honeypot
+          ...attribution,
         }),
       });
       const json = await res.json().catch(() => ({ ok: false }));

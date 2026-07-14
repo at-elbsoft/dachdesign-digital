@@ -152,6 +152,53 @@ module.exports = async function (context, req) {
     };
     if (hasEmail) mailOptions.replyTo = email;
     await transporter.sendMail(mailOptions);
+
+    // GA4 Measurement Protocol: serverseitige lead_verified-Conversion.
+    // Fehler dürfen die 200er-Antwort niemals blockieren.
+    try {
+      const mid = process.env.GA4_MEASUREMENT_ID;
+      const secret = process.env.GA4_MP_API_SECRET;
+      if (mid && secret && typeof fetch === "function") {
+        const clientId =
+          (data.ga_client_id && String(data.ga_client_id)) ||
+          `${Math.floor(Math.random() * 1e10)}.${Math.floor(Date.now() / 1000)}`;
+        const payload = {
+          client_id: clientId,
+          non_personalized_ads: false,
+          events: [
+            {
+              name: "lead_verified",
+              params: {
+                method: "contact_form",
+                page_location: data.page_location || "",
+                gclid: data.gclid || "",
+                value: 1,
+                currency: "EUR",
+              },
+            },
+          ],
+        };
+        const url = `https://www.google-analytics.com/mp/collect?measurement_id=${encodeURIComponent(
+          mid
+        )}&api_secret=${encodeURIComponent(secret)}`;
+        const ac = typeof AbortController === "function" ? new AbortController() : null;
+        const t = ac ? setTimeout(() => ac.abort(), 2000) : null;
+        try {
+          await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+            signal: ac ? ac.signal : undefined,
+          });
+          context.log("GA4 lead_verified gesendet", { clientId });
+        } finally {
+          if (t) clearTimeout(t);
+        }
+      }
+    } catch (e) {
+      context.log.warn("GA4 MP send fehlgeschlagen (ignoriert):", e && e.message);
+    }
+
     return respond(200, { ok: true });
   } catch (err) {
     context.log.error("Mailversand fehlgeschlagen:", err && err.message);

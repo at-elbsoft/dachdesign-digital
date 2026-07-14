@@ -2,6 +2,7 @@ import { useState } from "react";
 import { CheckCircle2, Loader2, Send } from "lucide-react";
 import { z } from "zod";
 import { trackEvent } from "@/lib/analytics";
+import { getAttributionPayload } from "@/lib/attribution";
 
 const quickSchema = z
   .object({
@@ -62,6 +63,7 @@ export default function QuickLeadForm({
 
     setStatus("submitting");
     try {
+      const attribution = await getAttributionPayload();
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -74,6 +76,7 @@ export default function QuickLeadForm({
             (parsed.data.message || "").trim() ||
             `Anfrage über Kurzformular – Objektart: ${parsed.data.objektart}`,
           company: data.company,
+          ...attribution,
         }),
       });
       const json = await res.json().catch(() => ({ ok: false }));
