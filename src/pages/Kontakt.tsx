@@ -196,10 +196,9 @@ export default function Kontakt() {
                 </div>
                 <div className="grid sm:grid-cols-2 gap-4 mb-4">
                   <div>
-                    <label className="block text-xs font-medium text-muted-foreground mb-1.5">E-Mail *</label>
+                    <label className="block text-xs font-medium text-muted-foreground mb-1.5">E-Mail</label>
                     <input
                       type="email"
-                      required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 transition-shadow"
