@@ -1,4 +1,4 @@
-import { CheckCircle2, Phone } from "lucide-react";
+import { CheckCircle2, Phone, Receipt, Banknote, FileCheck, BadgeEuro, ShieldCheck, PackageCheck, CalendarClock, Award } from "lucide-react";
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
