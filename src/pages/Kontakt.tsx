@@ -8,14 +8,23 @@ import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { trackEvent } from "@/lib/analytics";
 
-const contactSchema = z.object({
-  name: z.string().trim().min(1, "Bitte geben Sie Ihren Namen an.").max(200),
-  phone: z.string().trim().max(50).optional().or(z.literal("")),
-  email: z.string().trim().email("Bitte geben Sie eine gültige E-Mail-Adresse an.").max(320),
-  subject: z.string().trim().max(300).optional().or(z.literal("")),
-  message: z.string().trim().min(1, "Bitte geben Sie eine Nachricht ein.").max(5000),
-  consent: z.literal(true, { errorMap: () => ({ message: "Bitte stimmen Sie der Datenschutzerklärung zu." }) }),
-});
+const contactSchema = z
+  .object({
+    name: z.string().trim().min(1, "Bitte geben Sie Ihren Namen an.").max(200),
+    phone: z.string().trim().max(50).optional().or(z.literal("")),
+    email: z.string().trim().max(320).optional().or(z.literal("")),
+    subject: z.string().trim().max(300).optional().or(z.literal("")),
+    message: z.string().trim().max(5000).optional().or(z.literal("")),
+    consent: z.literal(true, { errorMap: () => ({ message: "Bitte stimmen Sie der Datenschutzerklärung zu." }) }),
+  })
+  .refine((d) => (d.phone && d.phone.length > 0) || (d.email && d.email.length > 0), {
+    message: "Bitte Telefon oder E-Mail angeben.",
+    path: ["phone"],
+  })
+  .refine(
+    (d) => !d.email || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email),
+    { message: "Bitte eine gültige E-Mail-Adresse angeben.", path: ["email"] }
+  );
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
@@ -45,10 +54,10 @@ export default function Kontakt() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: parsed.data.name,
-          email: parsed.data.email,
+          email: parsed.data.email || "",
           phone: parsed.data.phone || "",
           subject: parsed.data.subject || "",
-          message: parsed.data.message,
+          message: parsed.data.message || "",
           company: formData.company, // honeypot
         }),
       });
@@ -187,10 +196,9 @@ export default function Kontakt() {
                 </div>
                 <div className="grid sm:grid-cols-2 gap-4 mb-4">
                   <div>
-                    <label className="block text-xs font-medium text-muted-foreground mb-1.5">E-Mail *</label>
+                    <label className="block text-xs font-medium text-muted-foreground mb-1.5">E-Mail</label>
                     <input
                       type="email"
-                      required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 transition-shadow"
@@ -206,16 +214,16 @@ export default function Kontakt() {
                     />
                   </div>
                 </div>
-                <div className="mb-4">
-                  <label className="block text-xs font-medium text-muted-foreground mb-1.5">Nachricht *</label>
+                <div className="mb-2">
+                  <label className="block text-xs font-medium text-muted-foreground mb-1.5">Nachricht (optional)</label>
                   <textarea
-                    required
                     rows={5}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 transition-shadow resize-none"
                   />
                 </div>
+                <p className="text-[11px] text-muted-foreground mb-4">Telefon <em>oder</em> E-Mail – eines von beidem genügt.</p>
                 <label className="flex items-start gap-2 mb-6 text-xs text-muted-foreground cursor-pointer">
                   <input
                     type="checkbox"
