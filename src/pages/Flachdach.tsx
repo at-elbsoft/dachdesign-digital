@@ -113,12 +113,12 @@ function FlachdachsanierungSection() {
               Lassen Sie Ihr Flachdach frühzeitig prüfen und vermeiden Sie teure Folgeschäden. Wir beraten Sie kostenlos und unverbindlich.
             </p>
             <div className="flex flex-col gap-3">
-              <Link
-                to="/kontakt"
+              <a
+                href="#kurzformular"
                 className="inline-flex items-center justify-center gap-2 bg-accent text-accent-foreground px-6 py-3.5 rounded-lg font-bold text-base hover:shadow-lg hover:shadow-accent/25 transition-all duration-150 active:scale-[0.97]"
               >
                 Kostenloses Angebot anfordern
-              </Link>
+              </a>
               <a
                 href="tel:+4917613514385"
                 className="inline-flex items-center justify-center gap-2 bg-background border-2 border-accent text-accent px-6 py-3.5 rounded-lg font-semibold text-base hover:bg-accent/10 transition-all duration-150 active:scale-[0.97]"
