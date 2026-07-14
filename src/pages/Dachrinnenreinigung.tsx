@@ -125,6 +125,30 @@ export default function Dachrinnenreinigung() {
         breadcrumb="Leistungen / Dachrinnenreinigung"
         image={dachrinnenImg}
       />
+
+      {/* Trust / USP chip bar – Message-Match zu den Anzeigen */}
+      <section className="border-b border-border bg-muted/40">
+        <div className="container-wide py-4">
+          <ul className="flex flex-wrap items-center justify-center gap-2 text-xs md:text-sm">
+            {[
+              { icon: BadgeEuro, label: "Faire Festpreise" },
+              { icon: ShieldCheck, label: "Keine versteckten Kosten" },
+              { icon: PackageCheck, label: "Inkl. Fallrohr, Sichtprüfung & Entsorgung" },
+              { icon: CalendarClock, label: "Kurzfristige Termine" },
+              { icon: Award, label: "Meisterbetrieb aus Seevetal – über 25 Jahre Erfahrung" },
+            ].map(({ icon: Icon, label }) => (
+              <li
+                key={label}
+                className="inline-flex items-center gap-1.5 bg-background border border-border rounded-full px-3 py-1.5 font-medium shadow-sm"
+              >
+                <Icon className="w-3.5 h-3.5 md:w-4 md:h-4 text-accent shrink-0" aria-hidden="true" />
+                <span>{label}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       <section ref={ref} className="section-padding-lg">
         <div className="container-wide">
           <div className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-start ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
