@@ -34,6 +34,7 @@ export default function Navbar() {
   const location = useLocation();
 
   const isActive = (href: string) => location.pathname === href;
+  const whatsappUrl = `${WHATSAPP_BASE}?text=${location.pathname === "/flachdach" ? WHATSAPP_TEXT_FLACHDACH : WHATSAPP_TEXT_DEFAULT}`;
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-sm border-b border-border shadow-sm">
