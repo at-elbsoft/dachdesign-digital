@@ -7,7 +7,7 @@ const WHATSAPP_URL =
 export default function TrustBar() {
   return (
     <div
-      className="fixed left-0 right-0 top-16 md:top-20 z-40 bg-primary text-primary-foreground border-b border-primary/20"
+      className="sticky top-16 md:top-20 z-40 bg-primary text-primary-foreground border-b border-primary/20"
       role="complementary"
       aria-label="Serviceversprechen und Kontakt"
     >
