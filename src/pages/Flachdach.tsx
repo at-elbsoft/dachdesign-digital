@@ -51,7 +51,7 @@ const sanierungLeistungen = [
 ];
 
 const sanierungVorteile = [
-  "Über 20 Jahre Erfahrung",
+  "Über 25 Jahre Erfahrung",
   "Schnelle Terminvergabe",
   "Meisterbetrieb aus Seevetal bei Hamburg",
   "Hochwertige Materialien namhafter Hersteller",
