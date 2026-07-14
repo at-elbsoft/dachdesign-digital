@@ -4,8 +4,11 @@ import { Menu, X, Phone } from "lucide-react";
 import WhatsAppIcon from "./WhatsAppIcon";
 import logo from "@/assets/logo.webp";
 
-const WHATSAPP_URL =
-  "https://wa.me/4917613514385?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Dachrinnenreinigung";
+const WHATSAPP_BASE = "https://wa.me/4917613514385";
+const WHATSAPP_TEXT_DEFAULT =
+  "Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Dachrinnenreinigung";
+const WHATSAPP_TEXT_FLACHDACH =
+  "Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Flachdach-Anfrage";
 
 const NAV_ITEMS = [
   { label: "Willkommen", href: "/" },
@@ -31,6 +34,7 @@ export default function Navbar() {
   const location = useLocation();
 
   const isActive = (href: string) => location.pathname === href;
+  const whatsappUrl = `${WHATSAPP_BASE}?text=${location.pathname === "/flachdach" ? WHATSAPP_TEXT_FLACHDACH : WHATSAPP_TEXT_DEFAULT}`;
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-sm border-b border-border shadow-sm">
@@ -150,7 +154,7 @@ export default function Navbar() {
                 Jetzt anrufen
               </a>
               <a
-                href={WHATSAPP_URL}
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp Chat öffnen"
