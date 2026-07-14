@@ -1,9 +1,11 @@
-import { AlertTriangle, Award, CheckCircle2, Clock, Droplets, Layers, MapPin, Phone, Search, Shield, ShieldAlert, Sparkles, Wrench, Zap } from "lucide-react";
+import { AlertTriangle, Award, BadgeEuro, CheckCircle2, Clock, Droplets, Layers, MapPin, PackageCheck, Phone, Search, Shield, ShieldAlert, Sparkles, Wrench, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
 import SEOHead from "@/components/SEOHead";
+import QuickLeadForm from "@/components/QuickLeadForm";
+import MobileStickyCTA from "@/components/MobileStickyCTA";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import {
   Accordion,
@@ -302,24 +304,52 @@ export default function Flachdach() {
                 <Phone className="w-5 h-5" />
                 Jetzt anrufen: 0176 1351 4385
               </a>
-              <Link
-                to="/kontakt"
+              <a
+                href="#kurzformular"
                 className="inline-flex items-center justify-center gap-2 bg-background border-2 border-accent text-accent px-7 py-4 rounded-lg font-semibold text-base hover:bg-accent/10 transition-all duration-150 active:scale-[0.97]"
               >
-                Kostenloses Angebot anfordern
-              </Link>
+                Kostenloses Angebot
+              </a>
             </div>
-            <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
-              {["Kurzfristige Termine", "24h-Notdienst", "Schnell vor Ort"].map((badge) => (
-                <span
-                  key={badge}
-                  className="inline-flex items-center gap-1.5 bg-background border border-border rounded-full px-3 py-1.5 text-xs font-medium shadow-sm"
+
+            {/* Trust-Leiste */}
+            <ul className="flex flex-wrap items-center justify-center gap-2 text-xs md:text-sm mb-4">
+              {[
+                { icon: Award, label: "Meisterbetrieb aus Seevetal – über 25 Jahre Erfahrung" },
+                { icon: BadgeEuro, label: "Faire Festpreise – keine versteckten Kosten" },
+                { icon: PackageCheck, label: "Leckortung + Abdichtung aus einer Hand" },
+                { icon: ShieldAlert, label: "24h-Notdienst bei Wassereintritt" },
+              ].map(({ icon: Icon, label }) => (
+                <li
+                  key={label}
+                  className="inline-flex items-center gap-1.5 bg-background border border-border rounded-full px-3 py-1.5 font-medium shadow-sm"
                 >
-                  <CheckCircle2 className="w-3.5 h-3.5 text-accent" />
-                  {badge}
-                </span>
+                  <Icon className="w-3.5 h-3.5 md:w-4 md:h-4 text-accent shrink-0" aria-hidden="true" />
+                  <span>{label}</span>
+                </li>
               ))}
+            </ul>
+
+            {/* Preis-Anker */}
+            <div className="flex justify-center">
+              <span className="inline-flex items-center gap-2 bg-accent/10 text-accent border border-accent/30 rounded-full px-4 py-2 text-xs md:text-sm font-semibold">
+                <BadgeEuro className="w-4 h-4" aria-hidden="true" />
+                Festpreis nach kurzer Einschätzung – kostenlos & unverbindlich
+              </span>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Kurzformular direkt oben */}
+      <section className="py-8 md:py-12 bg-background">
+        <div className="container-wide">
+          <div className="max-w-2xl mx-auto">
+            <QuickLeadForm
+              id="kurzformular"
+              formName="kurzformular_flachdach"
+              defaultSubject="Flachdach – Angebotsanfrage"
+            />
           </div>
         </div>
       </section>
