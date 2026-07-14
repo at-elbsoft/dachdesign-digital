@@ -1,4 +1,4 @@
-import { CheckCircle2, Phone } from "lucide-react";
+import { CheckCircle2, Phone, Receipt, Banknote, FileCheck, BadgeEuro, ShieldCheck, PackageCheck, CalendarClock, Award } from "lucide-react";
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
@@ -18,6 +18,14 @@ import dachrinneVorherImg from "@/assets/dachrinne-vorher.jpg";
 import dachrinneNachherImg from "@/assets/dachrinne-nachher.jpg";
 
 const faqs = [
+  {
+    question: "Ist die Dachrinnenreinigung steuerlich absetzbar?",
+    answer: "Ja. Als Handwerkerleistung nach § 35a EStG können Privatkund:innen 20 % der Lohnkosten (max. 1.200 € pro Jahr) direkt von der Steuer absetzen. Wir stellen eine Rechnung mit separat ausgewiesenem Lohnanteil aus – Voraussetzung ist die Zahlung per Überweisung. Bitte im Einzelfall mit Finanzamt/Steuerberater klären.",
+  },
+  {
+    question: "Was ist im Preis enthalten?",
+    answer: "Reinigung der Dachrinnen, Kontrolle und Reinigung der Fallrohre, Sichtprüfung des Daches und fachgerechte Entsorgung von Laub und Schmutz. Auf Wunsch inklusive Foto-Dokumentation. Faire Festpreise – keine versteckten Kosten.",
+  },
   {
     question: "Wie oft sollte man die Dachrinne reinigen lassen?",
     answer: "In der Regel ein- bis zweimal pro Jahr, idealerweise im Herbst nach dem Laubfall und im Frühjahr. Bei vielen Bäumen in der Umgebung häufiger.",
@@ -117,6 +125,30 @@ export default function Dachrinnenreinigung() {
         breadcrumb="Leistungen / Dachrinnenreinigung"
         image={dachrinnenImg}
       />
+
+      {/* Trust / USP chip bar – Message-Match zu den Anzeigen */}
+      <section className="border-b border-border bg-muted/40">
+        <div className="container-wide py-4">
+          <ul className="flex flex-wrap items-center justify-center gap-2 text-xs md:text-sm">
+            {[
+              { icon: BadgeEuro, label: "Faire Festpreise" },
+              { icon: ShieldCheck, label: "Keine versteckten Kosten" },
+              { icon: PackageCheck, label: "Inkl. Fallrohr, Sichtprüfung & Entsorgung" },
+              { icon: CalendarClock, label: "Kurzfristige Termine" },
+              { icon: Award, label: "Meisterbetrieb aus Seevetal – über 25 Jahre Erfahrung" },
+            ].map(({ icon: Icon, label }) => (
+              <li
+                key={label}
+                className="inline-flex items-center gap-1.5 bg-background border border-border rounded-full px-3 py-1.5 font-medium shadow-sm"
+              >
+                <Icon className="w-3.5 h-3.5 md:w-4 md:h-4 text-accent shrink-0" aria-hidden="true" />
+                <span>{label}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       <section ref={ref} className="section-padding-lg">
         <div className="container-wide">
           <div className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-start ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
@@ -133,11 +165,12 @@ export default function Dachrinnenreinigung() {
               </p>
               <ul className="space-y-3">
                 {[
-                  "Gründliche Reinigung von Dachrinnen und Fallrohren",
-                  "Entfernung von Laub, Moos und Verschmutzungen",
-                  "Sichtprüfung auf Schäden und Undichtigkeiten",
-                  "Kleine Reparaturen auf Wunsch",
-                  "Zuverlässiger Service für Privat- und Gewerbekunden",
+                  "Reinigung der Dachrinnen",
+                  "Kontrolle & Reinigung der Fallrohre",
+                  "Sichtprüfung des Daches",
+                  "Fachgerechte Entsorgung von Laub und Schmutz",
+                  "Auf Wunsch Foto-Dokumentation",
+                  "Faire Festpreise – keine versteckten Kosten",
                 ].map((b) => (
                   <li key={b} className="flex gap-2 text-sm">
                     <CheckCircle2 className="w-4 h-4 text-accent shrink-0 mt-0.5" />
@@ -159,6 +192,54 @@ export default function Dachrinnenreinigung() {
           </div>
         </div>
       </section>
+
+      {/* Steuerlich absetzbar */}
+      <section id="steuer" className="section-padding-lg bg-accent/5 scroll-mt-32">
+        <div className="container-wide">
+          <div className="max-w-4xl mx-auto">
+            <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3 text-center">
+              § 35a EStG – Handwerkerleistung
+            </p>
+            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4 text-center leading-tight">
+              Bis zu 1.200 € im Jahr zurück – Dachrinnenreinigung ist steuerlich absetzbar
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-10 text-center">
+              Die Dachrinnenreinigung zählt als Handwerkerleistung nach § 35a EStG.
+              Privatkund:innen können <strong>20 % der Lohnkosten (max. 1.200 € pro Jahr)</strong>{" "}
+              direkt von der Steuer absetzen.
+            </p>
+
+            <div className="grid md:grid-cols-3 gap-4 mb-8">
+              {[
+                { icon: Receipt, text: "Wir stellen eine korrekte Rechnung mit separat ausgewiesenem Lohnanteil aus." },
+                { icon: Banknote, text: "Zahlung per Überweisung (nicht bar) – Voraussetzung fürs Finanzamt." },
+                { icon: FileCheck, text: "Auf Wunsch unterstützen wir bei der Zuordnung für Ihre Steuererklärung." },
+              ].map(({ icon: Icon, text }) => (
+                <div key={text} className="bg-background rounded-xl p-5 border border-border shadow-sm">
+                  <Icon className="w-6 h-6 text-accent mb-3" aria-hidden="true" />
+                  <p className="text-sm leading-relaxed">{text}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+              <Link
+                to="/kontakt"
+                className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-6 py-3 rounded-lg font-semibold text-sm hover:shadow-lg hover:shadow-accent/20 transition-all duration-150 active:scale-[0.97]"
+              >
+                Jetzt kostenloses Angebot anfordern
+              </Link>
+            </div>
+
+            <p className="text-xs text-muted-foreground text-center italic">
+              Keine Steuerberatung. Absetzbarkeit abhängig vom Einzelfall – bitte mit
+              dem Finanzamt/Steuerberater klären.
+            </p>
+          </div>
+        </div>
+      </section>
+
+
 
       <section ref={targetRef} className="section-padding-lg bg-muted/30">
         <div className="container-wide">
