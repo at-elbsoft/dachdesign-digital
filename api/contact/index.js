@@ -138,19 +138,20 @@ module.exports = async function (context, req) {
   const text =
     "Neue Anfrage über die Website ldbauklempnerei.de\n\n" +
     `Name:    ${name}\n` +
-    `E-Mail:  ${email}\n` +
+    `E-Mail:  ${hasEmail ? email : "-"}\n` +
     `Telefon: ${phone || "-"}\n` +
     `Betreff: ${subject || "-"}\n\n` +
-    `Nachricht:\n${message}\n`;
+    `Nachricht:\n${message && String(message).trim().length > 0 ? message : "-"}\n`;
 
   try {
-    await transporter.sendMail({
+    const mailOptions = {
       from: process.env.MAIL_FROM,
       to: process.env.MAIL_TO,
-      replyTo: email,
       subject: `Website-Anfrage: ${subject || "Kontaktformular"} – ${name}`,
       text,
-    });
+    };
+    if (hasEmail) mailOptions.replyTo = email;
+    await transporter.sendMail(mailOptions);
     return respond(200, { ok: true });
   } catch (err) {
     context.log.error("Mailversand fehlgeschlagen:", err && err.message);
