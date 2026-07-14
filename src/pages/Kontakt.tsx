@@ -214,16 +214,16 @@ export default function Kontakt() {
                     />
                   </div>
                 </div>
-                <div className="mb-4">
-                  <label className="block text-xs font-medium text-muted-foreground mb-1.5">Nachricht *</label>
+                <div className="mb-2">
+                  <label className="block text-xs font-medium text-muted-foreground mb-1.5">Nachricht (optional)</label>
                   <textarea
-                    required
                     rows={5}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 transition-shadow resize-none"
                   />
                 </div>
+                <p className="text-[11px] text-muted-foreground mb-4">Telefon <em>oder</em> E-Mail – eines von beidem genügt.</p>
                 <label className="flex items-start gap-2 mb-6 text-xs text-muted-foreground cursor-pointer">
                   <input
                     type="checkbox"
