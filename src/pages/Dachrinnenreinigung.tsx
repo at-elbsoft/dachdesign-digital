@@ -193,6 +193,54 @@ export default function Dachrinnenreinigung() {
         </div>
       </section>
 
+      {/* Steuerlich absetzbar */}
+      <section id="steuer" className="section-padding-lg bg-accent/5 scroll-mt-32">
+        <div className="container-wide">
+          <div className="max-w-4xl mx-auto">
+            <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3 text-center">
+              § 35a EStG – Handwerkerleistung
+            </p>
+            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4 text-center leading-tight">
+              Bis zu 1.200 € im Jahr zurück – Dachrinnenreinigung ist steuerlich absetzbar
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-10 text-center">
+              Die Dachrinnenreinigung zählt als Handwerkerleistung nach § 35a EStG.
+              Privatkund:innen können <strong>20 % der Lohnkosten (max. 1.200 € pro Jahr)</strong>{" "}
+              direkt von der Steuer absetzen.
+            </p>
+
+            <div className="grid md:grid-cols-3 gap-4 mb-8">
+              {[
+                { icon: Receipt, text: "Wir stellen eine korrekte Rechnung mit separat ausgewiesenem Lohnanteil aus." },
+                { icon: Banknote, text: "Zahlung per Überweisung (nicht bar) – Voraussetzung fürs Finanzamt." },
+                { icon: FileCheck, text: "Auf Wunsch unterstützen wir bei der Zuordnung für Ihre Steuererklärung." },
+              ].map(({ icon: Icon, text }) => (
+                <div key={text} className="bg-background rounded-xl p-5 border border-border shadow-sm">
+                  <Icon className="w-6 h-6 text-accent mb-3" aria-hidden="true" />
+                  <p className="text-sm leading-relaxed">{text}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+              <Link
+                to="/kontakt"
+                className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-6 py-3 rounded-lg font-semibold text-sm hover:shadow-lg hover:shadow-accent/20 transition-all duration-150 active:scale-[0.97]"
+              >
+                Jetzt kostenloses Angebot anfordern
+              </Link>
+            </div>
+
+            <p className="text-xs text-muted-foreground text-center italic">
+              Keine Steuerberatung. Absetzbarkeit abhängig vom Einzelfall – bitte mit
+              dem Finanzamt/Steuerberater klären.
+            </p>
+          </div>
+        </div>
+      </section>
+
+
+
       <section ref={targetRef} className="section-padding-lg bg-muted/30">
         <div className="container-wide">
           <div className={`max-w-3xl mx-auto ${targetVisible ? 'animate-fade-up' : 'opacity-0'}`}>
