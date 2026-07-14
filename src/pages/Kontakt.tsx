@@ -54,10 +54,10 @@ export default function Kontakt() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: parsed.data.name,
-          email: parsed.data.email,
+          email: parsed.data.email || "",
           phone: parsed.data.phone || "",
           subject: parsed.data.subject || "",
-          message: parsed.data.message,
+          message: parsed.data.message || "",
           company: formData.company, // honeypot
         }),
       });
