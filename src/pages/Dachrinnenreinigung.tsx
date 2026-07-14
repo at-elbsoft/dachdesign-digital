@@ -4,6 +4,8 @@ import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
 import SEOHead from "@/components/SEOHead";
+import QuickLeadForm from "@/components/QuickLeadForm";
+import MobileStickyCTA from "@/components/MobileStickyCTA";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import {
   Accordion,
@@ -115,27 +117,28 @@ export default function Dachrinnenreinigung() {
     <Layout>
       <SEOHead
         title="Dachrinnenreinigung Hamburg | Lehmann Dächer & Bauklempnerei"
-        description="Professionelle Dachrinnenreinigung in Hamburg: Reinigung von Dachrinnen und Fallrohren, Entfernung von Laub und Moos, Sichtprüfung und kleine Reparaturen."
+        description="Professionelle Dachrinnenreinigung in Hamburg & Umgebung: Faire Festpreise, inkl. Fallrohr, Sichtprüfung & Entsorgung. Meisterbetrieb aus Seevetal – über 25 Jahre Erfahrung."
         path="/dachrinnenreinigung"
         schema={{ "@context": "https://schema.org", "@graph": [serviceSchema, faqSchema] }}
       />
       <PageHero
-        title="Dachrinnenreinigung"
-        subtitle="Laub, Moos und Schmutz verstopfen Dachrinnen – wir sorgen dafür, dass Regenwasser wieder ungehindert abfließen kann."
+        title="Dachrinnenreinigung Hamburg & Umgebung"
+        subtitle="Faire Festpreise – inkl. Fallrohr, Sichtprüfung & Entsorgung. Laub, Moos und Schmutz verstopfen Dachrinnen – wir sorgen dafür, dass Regenwasser wieder ungehindert abfließen kann."
         breadcrumb="Leistungen / Dachrinnenreinigung"
         image={dachrinnenImg}
       />
 
-      {/* Trust / USP chip bar – Message-Match zu den Anzeigen */}
+      {/* Trust / Preis / Primär-CTAs – oberhalb der Falz */}
       <section className="border-b border-border bg-muted/40">
-        <div className="container-wide py-4">
+        <div className="container-wide py-4 md:py-5 space-y-4">
+          {/* Trust-Zeile */}
           <ul className="flex flex-wrap items-center justify-center gap-2 text-xs md:text-sm">
             {[
-              { icon: BadgeEuro, label: "Faire Festpreise" },
-              { icon: ShieldCheck, label: "Keine versteckten Kosten" },
+              { icon: Award, label: "Meisterbetrieb aus Seevetal – über 25 Jahre Erfahrung" },
+              { icon: BadgeEuro, label: "Faire Festpreise – keine versteckten Kosten" },
               { icon: PackageCheck, label: "Inkl. Fallrohr, Sichtprüfung & Entsorgung" },
               { icon: CalendarClock, label: "Kurzfristige Termine" },
-              { icon: Award, label: "Meisterbetrieb aus Seevetal – über 25 Jahre Erfahrung" },
+              { icon: ShieldCheck, label: "Rechnung mit Lohnanteil – § 35a absetzbar" },
             ].map(({ icon: Icon, label }) => (
               <li
                 key={label}
@@ -146,16 +149,49 @@ export default function Dachrinnenreinigung() {
               </li>
             ))}
           </ul>
+
+          {/* Preis-Anker + CTAs */}
+          <div className="flex flex-col md:flex-row md:items-center md:justify-center gap-3 md:gap-4">
+            <span className="inline-flex items-center gap-2 self-center bg-accent/10 text-accent border border-accent/30 rounded-full px-4 py-2 text-xs md:text-sm font-semibold">
+              <BadgeEuro className="w-4 h-4" aria-hidden="true" />
+              Festpreis nach kurzer Einschätzung – kostenlos & unverbindlich
+            </span>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2 sm:gap-3">
+              <a
+                href="tel:+4917613514385"
+                className="inline-flex items-center justify-center gap-2 bg-accent text-accent-foreground px-5 py-3 rounded-lg font-semibold text-sm hover:shadow-lg hover:shadow-accent/20 transition-all duration-150 active:scale-[0.97]"
+              >
+                <Phone className="w-4 h-4" aria-hidden="true" />
+                Jetzt anrufen: 0176 1351 4385
+              </a>
+              <a
+                href="#kurzformular"
+                className="inline-flex items-center justify-center gap-2 bg-background border border-accent text-accent px-5 py-3 rounded-lg font-semibold text-sm hover:bg-accent/5 transition-all duration-150 active:scale-[0.97]"
+              >
+                Kostenloses Angebot
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section ref={ref} className="section-padding-lg">
+      {/* Kurzformular direkt oben */}
+      <section className="py-8 md:py-12 bg-background">
+        <div className="container-wide">
+          <div className="max-w-2xl mx-auto">
+            <QuickLeadForm id="kurzformular" />
+          </div>
+        </div>
+      </section>
+
+      {/* Leistungsumfang */}
+      <section ref={ref} className="section-padding-lg bg-muted/30">
         <div className="container-wide">
           <div className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-start ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
             <div>
-              <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3">Zuverlässiger Service</p>
+              <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3">Leistungsumfang</p>
               <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4 leading-tight">
-                Schutz vor Feuchtigkeitsschäden
+                Was in der Dachrinnenreinigung enthalten ist
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-6">
                 Laub, Moos und Schmutz können Dachrinnen verstopfen und langfristig zu Feuchtigkeitsschäden an Fassade, Dach und Fundament führen. Mit unserer professionellen Dachrinnenreinigung sorgen wir dafür, dass Regenwasser wieder ungehindert abfließen kann und teure Folgeschäden vermieden werden.
@@ -178,10 +214,13 @@ export default function Dachrinnenreinigung() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-8">
+              <div className="mt-8 flex flex-wrap gap-3">
                 <a href="tel:+4917613514385" className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-6 py-3 rounded-lg font-semibold text-sm hover:shadow-lg hover:shadow-accent/20 transition-all duration-150 active:scale-[0.97]">
                   <Phone className="w-4 h-4" />
-                  Jetzt Angebot anfordern
+                  Jetzt anrufen
+                </a>
+                <a href="#kurzformular" className="inline-flex items-center gap-2 bg-background border border-accent text-accent px-6 py-3 rounded-lg font-semibold text-sm hover:bg-accent/5 transition-all duration-150 active:scale-[0.97]">
+                  Angebot anfragen
                 </a>
               </div>
             </div>
@@ -223,12 +262,12 @@ export default function Dachrinnenreinigung() {
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
-              <Link
-                to="/kontakt"
+              <a
+                href="#kurzformular"
                 className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-6 py-3 rounded-lg font-semibold text-sm hover:shadow-lg hover:shadow-accent/20 transition-all duration-150 active:scale-[0.97]"
               >
                 Jetzt kostenloses Angebot anfordern
-              </Link>
+              </a>
             </div>
 
             <p className="text-xs text-muted-foreground text-center italic">
@@ -239,58 +278,8 @@ export default function Dachrinnenreinigung() {
         </div>
       </section>
 
-
-
-      <section ref={targetRef} className="section-padding-lg bg-muted/30">
-        <div className="container-wide">
-          <div className={`max-w-3xl mx-auto ${targetVisible ? 'animate-fade-up' : 'opacity-0'}`}>
-            <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3 text-center">Für jedes Objekt</p>
-            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4 text-center leading-tight">
-              Für wen ist unsere Dachrinnenreinigung ideal?
-            </h2>
-            <p className="text-muted-foreground leading-relaxed mb-8 text-center">
-              Eine regelmäßige Dachrinnenreinigung schützt den Wert Ihrer Immobilie und verhindert kostspielige Feuchtigkeitsschäden. Unser Service ist die richtige Wahl für:
-            </p>
-            <ul className="grid sm:grid-cols-2 gap-3 mb-8">
-              {targetGroups.map((group) => (
-                <li key={group} className="flex items-center gap-3 bg-background rounded-lg px-4 py-3 shadow-sm border border-border">
-                  <CheckCircle2 className="w-5 h-5 text-accent shrink-0" />
-                  <span className="font-medium text-sm">{group}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="text-muted-foreground leading-relaxed text-center">
-              Ob Privatkunde, Verwaltung oder Gewerbetreibender: Wir sorgen dafür, dass Ihre Dachrinne und Fallrohre das ganze Jahr über zuverlässig funktionieren.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section ref={stepsRef} className="section-padding-lg">
-        <div className="container-wide">
-          <div className={`${stepsVisible ? 'animate-fade-up' : 'opacity-0'}`}>
-            <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3 text-center">Ablauf</p>
-            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4 text-center leading-tight">
-              So einfach geht's
-            </h2>
-            <p className="text-muted-foreground leading-relaxed mb-10 text-center max-w-2xl mx-auto">
-              In fünf Schritten zu einer freien Dachrinne – transparent, unverbindlich und auf Ihre Terminwünsche abgestimmt.
-            </p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
-              {steps.map((step, index) => (
-                <div key={index} className="relative bg-background rounded-xl p-6 shadow-sm border border-border text-center">
-                  <div className="w-10 h-10 rounded-full bg-accent text-accent-foreground flex items-center justify-center font-heading font-bold text-lg mx-auto mb-4">
-                    {index + 1}
-                  </div>
-                  <p className="text-sm font-medium leading-snug">{step}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section ref={beforeAfterRef} className="section-padding-lg bg-muted/30">
+      {/* Vorher / Nachher */}
+      <section ref={beforeAfterRef} className="section-padding-lg">
         <div className="container-wide">
           <div className={`${beforeAfterVisible ? 'animate-fade-up' : 'opacity-0'}`}>
             <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3 text-center">Ergebnis</p>
@@ -314,6 +303,79 @@ export default function Dachrinnenreinigung() {
         </div>
       </section>
 
+      {/* Ablauf */}
+      <section ref={stepsRef} className="section-padding-lg bg-muted/30">
+        <div className="container-wide">
+          <div className={`${stepsVisible ? 'animate-fade-up' : 'opacity-0'}`}>
+            <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3 text-center">Ablauf</p>
+            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4 text-center leading-tight">
+              So einfach geht's
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-10 text-center max-w-2xl mx-auto">
+              In fünf Schritten zu einer freien Dachrinne – transparent, unverbindlich und auf Ihre Terminwünsche abgestimmt.
+            </p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+              {steps.map((step, index) => (
+                <div key={index} className="relative bg-background rounded-xl p-6 shadow-sm border border-border text-center">
+                  <div className="w-10 h-10 rounded-full bg-accent text-accent-foreground flex items-center justify-center font-heading font-bold text-lg mx-auto mb-4">
+                    {index + 1}
+                  </div>
+                  <p className="text-sm font-medium leading-snug">{step}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Zielgruppen */}
+      <section ref={targetRef} className="section-padding-lg">
+        <div className="container-wide">
+          <div className={`max-w-3xl mx-auto ${targetVisible ? 'animate-fade-up' : 'opacity-0'}`}>
+            <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3 text-center">Für jedes Objekt</p>
+            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4 text-center leading-tight">
+              Für wen ist unsere Dachrinnenreinigung ideal?
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-8 text-center">
+              Eine regelmäßige Dachrinnenreinigung schützt den Wert Ihrer Immobilie und verhindert kostspielige Feuchtigkeitsschäden. Unser Service ist die richtige Wahl für:
+            </p>
+            <ul className="grid sm:grid-cols-2 gap-3 mb-8">
+              {targetGroups.map((group) => (
+                <li key={group} className="flex items-center gap-3 bg-background rounded-lg px-4 py-3 shadow-sm border border-border">
+                  <CheckCircle2 className="w-5 h-5 text-accent shrink-0" />
+                  <span className="font-medium text-sm">{group}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section ref={faqRef} className="section-padding-lg bg-muted/30">
+        <div className="container-wide max-w-3xl">
+          <div className={`${faqVisible ? 'animate-fade-up' : 'opacity-0'}`}>
+            <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3 text-center">FAQ</p>
+            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-8 text-center leading-tight">
+              Häufige Fragen zur Dachrinnenreinigung
+            </h2>
+            <Accordion type="single" collapsible className="w-full">
+              {faqs.map((faq, index) => (
+                <AccordionItem key={index} value={`item-${index}`}>
+                  <AccordionTrigger className="text-left text-base">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground leading-relaxed">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </div>
+      </section>
+
+      {/* Regionen */}
       <section ref={locationsRef} className="section-padding-lg">
         <div className="container-wide">
           <div className={`${locationsVisible ? 'animate-fade-up' : 'opacity-0'}`}>
@@ -340,29 +402,10 @@ export default function Dachrinnenreinigung() {
         </div>
       </section>
 
-      <section ref={faqRef} className="section-padding-lg bg-muted/30">
-        <div className="container-wide max-w-3xl">
-          <div className={`${faqVisible ? 'animate-fade-up' : 'opacity-0'}`}>
-            <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-3 text-center">FAQ</p>
-            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-8 text-center leading-tight">
-              Häufige Fragen zur Dachrinnenreinigung
-            </h2>
-            <Accordion type="single" collapsible className="w-full">
-              {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left text-base">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground leading-relaxed">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </div>
-      </section>
       <CTASection />
+
+      {/* Sticky Mobile-CTA */}
+      <MobileStickyCTA />
     </Layout>
   );
 }
