@@ -572,6 +572,7 @@ export default function Flachdach() {
         </div>
       </section>
       <CTASection />
+      <MobileStickyCTA whatsappUrl="https://wa.me/4917613514385?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Flachdach-Anfrage" />
     </Layout>
   );
 }
