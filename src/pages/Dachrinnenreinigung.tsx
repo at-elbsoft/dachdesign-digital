@@ -19,6 +19,14 @@ import dachrinneNachherImg from "@/assets/dachrinne-nachher.jpg";
 
 const faqs = [
   {
+    question: "Ist die Dachrinnenreinigung steuerlich absetzbar?",
+    answer: "Ja. Als Handwerkerleistung nach § 35a EStG können Privatkund:innen 20 % der Lohnkosten (max. 1.200 € pro Jahr) direkt von der Steuer absetzen. Wir stellen eine Rechnung mit separat ausgewiesenem Lohnanteil aus – Voraussetzung ist die Zahlung per Überweisung. Bitte im Einzelfall mit Finanzamt/Steuerberater klären.",
+  },
+  {
+    question: "Was ist im Preis enthalten?",
+    answer: "Reinigung der Dachrinnen, Kontrolle und Reinigung der Fallrohre, Sichtprüfung des Daches und fachgerechte Entsorgung von Laub und Schmutz. Auf Wunsch inklusive Foto-Dokumentation. Faire Festpreise – keine versteckten Kosten.",
+  },
+  {
     question: "Wie oft sollte man die Dachrinne reinigen lassen?",
     answer: "In der Regel ein- bis zweimal pro Jahr, idealerweise im Herbst nach dem Laubfall und im Frühjahr. Bei vielen Bäumen in der Umgebung häufiger.",
   },
