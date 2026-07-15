@@ -280,14 +280,14 @@ export default function Kontakt() {
       <section className="pb-0">
         <div className="w-full h-[400px] md:h-[500px]">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2374.5!2d10.0836!3d53.3922!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b1752c16e6b3a3%3A0x9e4e2a4a9b0e3e0a!2sGr%C3%BCtzm%C3%BChle%2023%2C%2021218%20Seevetal!5e0!3m2!1sde!2sde!4v1700000000000!5m2!1sde!2sde"
+            src="https://www.google.com/maps?q=Graubergen+19,+21218+Seevetal&output=embed"
             width="100%"
             height="100%"
             style={{ border: 0 }}
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Standort Lehmann Dächer & Bauklempnerei GmbH"
+            title="Standort Lehmann Dächer & Bauklempnerei GmbH – Graubergen 19, 21218 Seevetal"
           />
         </div>
       </section>
